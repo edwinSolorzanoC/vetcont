@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+<body>
+    
+    <header>
+
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">VETCONT</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="informacion.html">Información</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/contactenos.html">Contactenos</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="bloque">
+
+            <section class="flex">
+                <div class="informacion">
+                    <h1>SISTEMA DE CONTROL VETERINARIO</h1>
+                    <p>VETCONT</p>
+    
+                    <div class="opciones">
+                        <button type="button" class="btn button" id="btn_mostrarLogin"> INGRESAR AL SISTEMA </button>
+                        <button type="button" class="btn button" id="btn_mostrarSingIn">  CREAR CUENTA VETCONT </button>
+    
+                    </div>
+                </div>
+            </section>
+
+            
+
+            <div class="login" id="formularioLogin">
+              <h1>Iniciar Sesion</h1>
+                <form action="/login" method="post" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nombre de Usuario</label>
+                        <input class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example" name="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Contraseña de Usuario</label>
+                        <input class="form-control" type="text" placeholder="Nombre Mascota ..." aria-label="default input example" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Iniciar Sesion </button>
+                
+                </form>
+            </div>
+
+            <div class="login" id="formularioSingIn">
+              <h1>Crear Cuenta VETCONT</h1>
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Recomendaciones: </strong>  Ingresar nombre completo con ambos apellidos <br> 
+                La contraseña debe de contener al menos UNA LETRA MAYUSCULA y minimo UN NUMERO para sea una contraseña aceptada <br> 
+                La contraseña debe ser distinta al nombre de usuario <br> 
+                Debe de tener una clave de seguridad valida para poder crear la cuenta
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <form action="/crearCuenta" method="post" autocomplete="off">
+                  <div class="mb-3">
+                    <label for="nombreUsuario">Escribe tu completo</label>
+                    <input class="form-control" name="nombreUsuario" type="text" placeholder="Nombre Completo..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="nombreSistema">Crea un nombre usuario para la plataforma</label>
+                    <input class="form-control"  name="nombreSistema" type="text" placeholder="Usuario de sistema..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="password">Crea una contraseña segura para la plataforma</label>
+                    <input class="form-control" name="password" type="password" placeholder="Contraseña de sistema..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="correoElectronico">Escribe tu correo electronico</label>
+                    <input class="form-control" name="correoElectronico" type="email" placeholder="Correo electronico..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="numeroTelefono">Escribe tu numero de telefono</label>
+                    <input class="form-control" name="numeroTelefono" type="number" placeholder="Numero de telefono..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="direccion">Escribe la direccion de la veterinaria</label>
+                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Dieccion extacta del consultorio..." required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
+                    <input class="form-control" name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
+                  </div>
+                  <button type="submit" class="btn btn-success">Crear Cuenta </button>
+              
+              </form>
+          </div>
+            
+        </section>
+
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetAlert/indexAlert.js"></script>
+</body>
+</html>

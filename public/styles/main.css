@@ -1,0 +1,59 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+
+
+.navbar{
+    background-color: #2ba1d4;
+    font-family: "Josefin Sans", sans-serif;
+}
+.navbar li a{
+    color: rgb(0, 0, 0);
+}
+main{
+    min-height: 90vh;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 2%;
+}
+main .button{
+    background-color: #2ba1d4;
+    color: white;
+}
+main .button:hover{
+    background-color: #35bdf7;
+    color: white;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.287)
+}
+.bloque .opciones{
+    margin: 1% 0%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.bloque .opciones button{
+    margin: 0.5%;
+}
+table .motivoCitaTabla{
+    width: 500px;
+}
+table .opcionesTabla{
+    width: 150px;
+}
+table tbody tr td{
+    align-items: center;
+}
+
+@media screen and (max-width: 700px) {
+    
+    .table-container {
+        width: 100%;
+        overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
+        white-space: nowrap; /* Evita el salto de línea en las celdas */
+    }
+
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+      
+}

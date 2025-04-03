@@ -1,0 +1,9 @@
+@import url(main.css);
+
+.bloque{
+    justify-content: space-between;
+}
+
+.listaPacientes{
+    width: 50%;
+}

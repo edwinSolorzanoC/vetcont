@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="styles/registroPacientes.css">
+</head>
+<body>
+    
+  <%- include('partials/header') %>
+
+
+
+    <main>
+
+      <h1>Información de pacientes</h1>
+
+      <section class="buscadorPacienetes">
+        <h2>Busqueda de Pacientes</h2>
+        <form action="/buscarPaciente" method="post">
+            <div class="mb-3">
+                <label for="" class="form-label">N Identidad de Propietario</label>
+                <input name="cedulaPropietario" class="form-control" type="number" placeholder="Numero de Identidad del Propietario ..." aria-label="default input example" required>
+            </div>
+            <button type="submit" class="btn button">Buscar Paciente<i class="fa-solid fa-magnifying-glass"></i> </button>
+        </form>
+    </section>
+
+      <section class="listaPacientes">
+        
+
+        <% if (datos_paciente && Array.isArray(datos_paciente) && datos_paciente.length > 0) { %>
+
+
+          <table class="table table-striped mt-2">
+            <tbody>
+              
+              <% datos_paciente.forEach(dato => { %>
+                <tr class="linea_tabla" id="linea_tabla">
+                  <td> <%= dato.tb_propietarios_col_nombre %> </td>
+                  <td> <%= dato.tb_pacientes_col_nombre %> </td>
+                  <td> <%= dato.tb_pacientes_col_fechaUltimaConsulta %> </td>
+                </tr>
+
+                <% }); %>
+            
+            </tbody>
+          </table>
+
+          
+
+      <% } else { %>
+
+
+          
+
+          
+      <% } %>
+      </section>
+
+      <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+        <strong>Alerta: </strong> Debes buscar un paciente y seleccionarlo para mostrar su información
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <section class="bloque">
+        <div class="opciones">
+          <button type="button" class="btn button">Consultas Paciente</button>
+          <button type="button" class="btn button">Programa Vacunación Paciente </button>
+          <button type="button" class="btn button">Informacion General </button>
+          <button type="button" class="btn button">Informacion Propietario </button>
+        </div>
+      </section>
+
+      <section class="informacionPaciente">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Fecha Consulta</th>
+              <th scope="col">Motivo Consulta</th>
+              <th scope="col">Tratamiento Consulta</th>
+              <th scope="col">Costo Total Consulta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>25/03/2025</td>
+              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
+              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
+              <td>25000</td>
+            </tr>
+            <tr>
+              <td>25/03/2025</td>
+              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
+              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
+              <td>25000</td>
+            </tr>
+            <tr>
+              <td>25/03/2025</td>
+              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
+              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
+              <td>25000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetAlert/informacionPacienteAlerts.js"></script>
+
+</body>
+</html>

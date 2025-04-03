@@ -1,0 +1,17 @@
+@import url(main.css);
+
+
+.formulario form{
+    display: flex;
+}
+.formulario form{
+    justify-content: space-between;
+}
+.formulario form .bloque{
+    height: 100%;
+    width: 49%;
+}
+
+.listaPacientes{
+    width: 50%;
+}

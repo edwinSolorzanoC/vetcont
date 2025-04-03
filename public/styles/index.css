@@ -1,0 +1,85 @@
+@import url(main.css);
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+
+.navbar{
+    background-color: white !important;
+}
+
+main{
+    background: url(../images/fondoIndex.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    min-height: 90vh;
+    padding: 0px;
+    
+}
+
+.bloque{
+    background-color: rgba(0, 0, 0, 0.409);
+    backdrop-filter: blur(2px);
+    min-height: 100vh;
+
+    padding: 5%;
+    
+    color: white;
+}
+.bloque .flex{
+    min-height: 70vh;
+
+    align-items: center;
+    display: flex;
+}
+.bloque h1{
+    font-family: "Karla", sans-serif;
+    font-weight: 800;
+    font-size: 12vh;
+}
+.bloque p{
+    font-family: "Karla", sans-serif;
+    font-weight: 400;
+    font-size: 5vh;
+}
+
+.bloque .button{
+    padding: 1% 2%;
+}
+
+@media screen and (max-width: 1000px){
+    .bloque{
+        text-align: center;
+    }
+    .bloque .opciones{
+        justify-content: center;
+    }
+    .bloque h1{
+        font-size: 5vh;
+    }
+    .bloque p{
+        font-size: 2vh;
+    }
+}
+@media screen and (max-width: 500px){
+    .bloque h1{
+        font-size: 3vh;
+    }
+    .bloque p{
+        font-size: 2vh;
+    }
+}
+
+
+.bloque .login{
+    backdrop-filter: blur(1px);
+    padding: 1%;
+    border-radius: 10px;
+}
+#formularioLogin{
+    display: none;
+}
+#formularioSingIn{
+    display: none;
+}
