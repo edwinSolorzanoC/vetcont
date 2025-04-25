@@ -11,104 +11,94 @@
     <link rel="stylesheet" href="styles/registroConsultaGeneral.css">
 </head>
 <body>
-    
-  <%- include('partials/header') %>
-
-
-
-    <main>
-
-      <h1>Registrar Consultas Generales</h1>
-
-      
-      <section class="bloque">
-
-        <section class="buscadorPacienetes">
-            <h2>Buscar Pacientes</h2>
-            <form>
-                <div class="mb-3">
-                  <input class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example">
-                </div>
-                <button type="button" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
-            </form>
-        </section>
-
-        <section class="listaPacientes">
-
-            <table class="table text-center">
-                <tbody>
-                  <tr>
-                    <td colspan="2">No hay Resultados</td>
-                  </tr>
-                </tbody>
-              </table>
-
-        </section>
-
-        
-        <section class="formulario">
-
-            <h2>Formulario de Consulta General</h2>
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-              <strong>Recomendación: </strong> Si buscó un paciente, seleccionelo y algunos datos se llenarán automaticamente
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-            <form>
-              
-              <div class="bloque">
-                <div class="mb-3">
-                  <label for="" class="form-label">Nombre Propietario</label>
-                  <input class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Nombre Mascota</label>
-                  <input class="form-control" type="text" placeholder="Nombre Mascota ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Peso Mascota</label>
-                  <input class="form-control" type="number" placeholder="Peso de la Mascota en Kg ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Motivo de consulta</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Motivo de Consulta ..."></textarea>
-                </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Medicamentos Utilizados</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Medicamentos Utilizados en Consulta ..."></textarea>
-                </div>
-                <button type="button" class="btn btn-success">Confirar Consulta </button>
-
-              </div>
-              <div class="bloque">
-
-                <div class="mb-3">
-                  <label for="" class="form-label">Costo Servicios</label>
-                  <input class="form-control" type="number" placeholder="Costo por los servicios brindados ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Costo Medicamentos</label>
-                  <input class="form-control" type="number" placeholder="Costo por Medicamentos utilizados ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Costo Extras</label>
-                  <input class="form-control" type="number" placeholder="Costo por Extras en la consulta ..." aria-label="default input example">
-                </div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Nota sobre Costos</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Nota sobre los costos añadidos ..."></textarea>
-                </div>
   
-              </div>
-
-            </form>
-
-        </section>
+  <%- include('partials/header') %>
+  
+  <main>
+    
+    <h1>Registrar Consultas Generales</h1>
+    <section class="buscadorPacienetes">
+      <h2>Busqueda de Pacientes</h2>
+      <form action="/buscarPacienteConsultas" method="post">
+        <div class="mb-3">
+            <input name="cedulaPropietario" class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example" required>
+        </div>
+        <button type="submit" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
+    </form>
     </section>
 
-    </main>
+    <%- include('partials/resultadosBusqueda') %>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+
+    <section class="formulario">
+
+      <h2>Formulario de Consulta General</h2>
+      <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Recomendación: </strong> Si buscó un paciente, seleccionelo y algunos datos se llenarán automaticamente
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+
+      <form action="/registrarConsultaGeneral" method="post">
+          
+        <div class="bloque">
+          <div class="mb-3">
+            <label for="" class="form-label">Nombre Propietario</label>
+            <input name="nombrePropietarioConsulta" id="nombrePropietarioConsulta" class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example" required>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Nombre Mascota</label>
+            <input name="nombreMascotaConsulta" id="nombreMascotaConsulta" class="form-control" type="text" placeholder="Nombre Mascota ..." aria-label="default input example"required>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Peso Mascota</label>
+            <input name="pesoMascotaConsulta" id="pesoMascotaConsulta" class="form-control" type="number" placeholder="Peso de la Mascota en Kg ..." aria-label="default input example"required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Motivo de consulta</label>
+            <input name="motivoConsulta" id="motivoConsulta" class="form-control" type="text" placeholder="Motivo de Consulta ..." aria-label="default input example"required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Medicamentos Utilizados</label>
+            <input name="medicamentosConsulta" id="medicamentosConsulta" class="form-control" type="text" placeholder="Medicamentos Utilizados en Consulta ..." aria-label="default input example"required>
+          </div>
+          <button type="submit" class="btn btn-success">Confirmar Consulta </button>
+
+        </div>
+        <div class="bloque">
+
+          <div class="mb-3">
+            <label for="" class="form-label">Costo Servicios</label>
+            <input name="costosServiciosConsulta" id="costosServiciosConsulta" class="form-control" type="number" placeholder="Costo por los servicios brindados ..." aria-label="default input example" required>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Costo Medicamentos</label>
+            <input name="costosMedicamentosConsulta" id="costosMedicamentosConsulta" class="form-control" type="number" placeholder="Costo por Medicamentos utilizados ..." aria-label="default input example"required>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Costo Extras</label>
+            <input name="costosExtrasConsulta" id="costosExtrasConsulta" class="form-control" type="number" placeholder="Costo por Extras en la consulta ..." aria-label="default input example" required>
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Nota sobre Costos</label>
+            <input name="notaCostosConsulta" id="notaCostosConsulta" class="form-control" type="text" placeholder="Nota sobre los costos añadidos ..." aria-label="default input example"required>
+          </div>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script src="js/registrarConsultaGeneral.js"></script>
+  <script src="sweetAlert/registrarConsultaGeneral.js"></script>
+
 
 </body>
 </html>

@@ -1,0 +1,5 @@
+
+Listo lo de informacion consultas, solo falta hacer que el filtro funcione
+
+Tambien falta lo de las citas
+Tambien lo de actualizar contraseña

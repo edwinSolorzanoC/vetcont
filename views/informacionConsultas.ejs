@@ -21,24 +21,7 @@
         <section class="bloque">
 
           <h1>Registro de consultas realizadas</h1>
-            <section class="buscadorPacienetes">
-                <h2>Añadir filtro de busqueda</h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Fecha de inicio</label>
-                        <input class="form-control" type="date" placeholder="Default input" aria-label="default input example">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Fecha final</label>
-                        <input class="form-control" type="date" placeholder="Default input" aria-label="default input example">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">N Identidad de Propietario</label>
-                        <input class="form-control" type="number" placeholder="Numero de Identidad del Propietario ..." aria-label="default input example">
-                    </div>
-                    <button type="button" class="btn button">Añadir Filtro <i class="fa-solid fa-filter"></i> </button>
-                </form>
-            </section>
+
 
             <section class="bloque">
               <div class="opciones">
@@ -50,6 +33,7 @@
 
             <section class="table-container" id="consultasGenerales">
                 
+
                 <table class="table table-striped">
                   <thead class="">
                     <tr class="text-center">
@@ -60,38 +44,28 @@
                     <tr>
                       <th scope="col">Nombre Propietario</th>
                       <th scope="col">Nombre Mascota</th>
-                      <th scope="col">Peso Actualizado</th>
+                      <th scope="col">Peso Consulta</th>
                       <th scope="col">Motivo</th>
                       <th scope="col">Medicamentos utilizados</th>
                       <th scope="col">Fecha Consulta</th>
+                      <th scope="col">Costo Final Consulta</th>
 
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Edwin Gerardo Solorzano Campos</td>
-                      <td>Jack</td>
-                      <td>35 kg</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>24/03/2025</td>
-                    </tr>
-                    <tr>
-                      <td>Edwin Gerardo Solorzano Campos</td>
-                      <td>Jack</td>
-                      <td>35 kg</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>24/03/2025</td>
-                    </tr>
-                    <tr>
-                      <td>Edwin Gerardo Solorzano Campos</td>
-                      <td>Jack</td>
-                      <td>35 kg</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      <td>24/03/2025</td>
-                    </tr>
+                    <% datosConsultaGeneral.forEach(dato => { %>
+                      <tr class="">
+
+                        <td><%=dato.tb_consultaGeneral_col_nombrePaciente %></td>
+                        <td class="propietario"><%=dato.tb_consultaGeneral_col_nombrePropietario %></td>
+                        <td class="pesoConsulta"><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
+                        <td class="motivo"><%=dato.tb_consultaGeneral_col_motivo %></td>
+                        <td class="tratamiento"><%=dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
+                        <td><%= new Date(dato.tb_consultaGeneral_col_fecha).toLocaleDateString('es-ES') %></td>
+                        <td class="costoConsulta">₡ <%=dato.tb_costosConsultas_col_total %></td>
+
+                      </tr>
+                    <%}); %>
                   </tbody>
                 </table>
 
@@ -109,38 +83,26 @@
                   <tr>
                     <th scope="col">Nombre Propietario</th>
                     <th scope="col">Nombre Mascota</th>
-                    <th scope="col">Peso Actualizado</th>
+                    <th scope="col">Peso Consulta</th>
                     <th scope="col">Programa Vacunacion</th>
                     <th scope="col">Programa Desparacitacion</th>
                     <th scope="col">Fecha Consulta</th>
+                    <th scope="col">Costo Final Consulta</th>
 
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Edwin Gerardo Solorzano Campos</td>
-                    <td>Jack</td>
-                    <td>35 kg</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>24/03/2025</td>
-                  </tr>
-                  <tr>
-                    <td>Edwin Gerardo Solorzano Campos</td>
-                    <td>Jack</td>
-                    <td>35 kg</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>24/03/2025</td>
-                  </tr>
-                  <tr>
-                    <td>Edwin Gerardo Solorzano Campos</td>
-                    <td>Jack</td>
-                    <td>35 kg</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                    <td>24/03/2025</td>
-                  </tr>
+                  <% datosConsultaVacunacion.forEach(dato => { %>
+                    <tr>
+                        <td><%=dato.tb_consultaVacunacion_col_nombrePaciente %></td>
+                        <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
+                        <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %>Kg</td>
+                        <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
+                        <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>
+                        <td><%= new Date(dato.tb_consultaVacunacion_col_fecha).toLocaleDateString('es-ES') %></td>
+                        <td>₡  <%=dato.tb_costosConsultas_col_total %></td>
+                    </tr>
+                <%}); %>
                  
                 </tbody>
               </table>

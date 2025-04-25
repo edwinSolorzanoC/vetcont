@@ -1,0 +1,43 @@
+<section class="listaPacientes">
+        
+
+    <% if (datos_paciente && Array.isArray(datos_paciente) && datos_paciente.length > 0) { %>
+
+
+      <table class="table table-striped mt-2 " id="tabla_pacientes">
+        <tbody>
+          
+          <% datos_paciente.forEach(dato => { %>
+            <tr class="table-hover linea_tabla" id="linea_tabla">
+              <td><%=dato.tb_propietarios_col_nombre%></td>
+              <td><%=dato.tb_pacientes_col_nombre%></td>
+              <td>
+                <%= new Date(dato.tb_pacientes_col_fechaUltimaConsulta).toLocaleDateString('es-ES') %>
+              </td>
+              
+            </tr>
+
+            <% }); %>
+        
+        </tbody>
+      </table>
+
+      
+
+  <% } else { %>
+
+
+
+    <table class="table table-striped mt-2">
+      <tbody>
+        
+        <tr>
+          <td colspan="3" style="text-align: center;">No hay resultados de busqueda</td>
+        </tr>
+      
+      </tbody>
+    </table>
+      
+  <% } %>
+
+  </section>

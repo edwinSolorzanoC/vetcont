@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-    <link rel="stylesheet" href="styles/registroPacientes.css">
+    <link rel="stylesheet" href="styles/informacionPacientes.css">
 </head>
 <body>
     
@@ -22,46 +22,16 @@
 
       <section class="buscadorPacienetes">
         <h2>Busqueda de Pacientes</h2>
-        <form action="/buscarPaciente" method="post">
+        <form action="/buscarPacienteInformacion" method="post">
             <div class="mb-3">
-                <label for="" class="form-label">N Identidad de Propietario</label>
-                <input name="cedulaPropietario" class="form-control" type="number" placeholder="Numero de Identidad del Propietario ..." aria-label="default input example" required>
+                <input name="cedulaPropietario" class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example" required>
             </div>
-            <button type="submit" class="btn button">Buscar Paciente<i class="fa-solid fa-magnifying-glass"></i> </button>
+            <button type="submit" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
         </form>
-    </section>
-
-      <section class="listaPacientes">
         
+    </section>
+    <%- include('partials/resultadosBusqueda') %>
 
-        <% if (datos_paciente && Array.isArray(datos_paciente) && datos_paciente.length > 0) { %>
-
-
-          <table class="table table-striped mt-2">
-            <tbody>
-              
-              <% datos_paciente.forEach(dato => { %>
-                <tr class="linea_tabla" id="linea_tabla">
-                  <td> <%= dato.tb_propietarios_col_nombre %> </td>
-                  <td> <%= dato.tb_pacientes_col_nombre %> </td>
-                  <td> <%= dato.tb_pacientes_col_fechaUltimaConsulta %> </td>
-                </tr>
-
-                <% }); %>
-            
-            </tbody>
-          </table>
-
-          
-
-      <% } else { %>
-
-
-          
-
-          
-      <% } %>
-      </section>
 
       <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
         <strong>Alerta: </strong> Debes buscar un paciente y seleccionarlo para mostrar su información
@@ -70,16 +40,20 @@
 
       <section class="bloque">
         <div class="opciones">
-          <button type="button" class="btn button">Consultas Paciente</button>
-          <button type="button" class="btn button">Programa Vacunación Paciente </button>
-          <button type="button" class="btn button">Informacion General </button>
-          <button type="button" class="btn button">Informacion Propietario </button>
+          <button type="button" class="btn button" id="button_consultas">Consultas Paciente</button>
+          <button type="button" class="btn button" id="button_vacunacion">Programa Vacunación Paciente </button>
+          <button type="button" class="btn button" id="button_paciente">Informacion General Paciente </button>
+          <button type="button" class="btn button" id="button_propietario">Informacion Propietario </button>
         </div>
       </section>
 
-      <section class="informacionPaciente">
-        <table class="table table-striped">
+      <section class="informacionConsultas" id="informacionConsultas">
+
+        <table class="table table-striped" id="tabla_informacionConsultas">
           <thead>
+            <tr>
+              <th scope="col" colspan="4" style="text-align: center; background-color: rgb(213, 213, 213);">Consultas Generales</th>
+            </tr>
             <tr>
               <th scope="col">Fecha Consulta</th>
               <th scope="col">Motivo Consulta</th>
@@ -89,32 +63,136 @@
           </thead>
           <tbody>
             <tr>
-              <td>25/03/2025</td>
-              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
-              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
-              <td>25000</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section class="informacionVacunacion" id="informacionVacunacion">
+        <table class="table table-striped" id="tablaInformacionvacunacion">
+          <thead>
+            <tr>
+              <th scope="col" colspan="4" style="text-align: center; background-color: rgb(213, 213, 213);">Consultas Vacunacion</th>
             </tr>
             <tr>
-              <td>25/03/2025</td>
-              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
-              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
-              <td>25000</td>
+              <th scope="col">Fecha Consulta</th>
+              <th scope="col">Programa Desparacitación</th>
+              <th scope="col">Programa Vacunación</th>
+              <th scope="col">Costo Total Consulta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section class="informacionPaciente" id="informacionPaciente">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" colspan="4" style="text-align: center; background-color: rgb(213, 213, 213);">Informacion Paciente</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th style="width: 30%;" >Nombre Paciente: </th>
+              <td id="nombreMascota"></td>
             </tr>
             <tr>
-              <td>25/03/2025</td>
-              <td class="motivoCitaTabla">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo doloremque ipsum asperiores a perspiciatis voluptatem odit aperiam blanditiis corrupti placeat doloribus consequatur mollitia dolores eum voluptates labore ipsa, laboriosam veritatis!</td>
-              <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</td>
-              <td>25000</td>
+              <th>Tipo Mascota: </th>
+              <td id="tipoMascota"></td>
+            </tr>
+            <tr>
+              <th>Raza Mascota: </th>
+              <td id="razaMascota"></td>
+            </tr>
+            <tr>
+              <th>Fecha de Nacimiento: </th>
+              <td id="fechaNacimientoMascota"></td>
+            </tr>
+            <tr>
+              <th >Sexo Mascota: </th>
+              <td id="SexoMascota"></td>
+            </tr>
+            <tr>
+              <th >Color Mascota: </th>
+              <td id="colorMascota"></td>
+            </tr>
+            <tr>
+              <th >Castracion Mascota: </th>
+              <td id="castracionMascota"></td>
+            </tr>
+            <tr>
+              <th >Edad Exacta Mascota: </th>
+              <td id="edadMascota"></td>
+            </tr>
+            <tr>
+              <th >Cantidad Partos Mascota: </th>
+              <td id="cantidadPartosMascota"></td>
+            </tr>
+            <tr>
+              <th >Fecha Ultimo Parto: </th>
+              <td id="fechaUltimoPartoMascota"></td>
+            </tr>
+            <tr>
+              <th >Peso Mascota: </th>
+              <td id="pesoMascota"></td>
+            </tr>
+            <tr>
+              <th >Fecha Ultima Consulta: </th>
+              <td id="fechaUltimaConsultaMascota"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+
+      <section class="informacionPropietario" id="informacionPropietario">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col" colspan="4" style="text-align: center; background-color: rgb(213, 213, 213);">Informacion Propietario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th style="width: 30%;">Nombre Propietario: </th>
+              <td id="nombrePropietarioTabla"></td>
+            </tr>
+            <tr>
+              <th >Documento de Identidad: </th>
+              <td id="numeroIdentidadPropietarioTabla"></td>
+            </tr>
+            <tr>
+              <th >Direccion de Propietario: </th>
+              <td id="direccionPropietarioTabla"></td>
+            </tr>
+            <tr>
+              <th >Telefono de Contacto: </th>
+              <td id="telefonoPropietarioTabla"></td>
+            </tr>
+            <tr>
+              <th >Correo Electronico: </th>
+              <td id="correoElectronicoPropietarioTabla"></td>
             </tr>
           </tbody>
         </table>
       </section>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetAlert/informacionPacienteAlerts.js"></script>
+
+    <script src="ajax/informacionPacientes.js"></script>
+    <script src="js/informacionPacientes.js"></script>
 
 </body>
 </html>

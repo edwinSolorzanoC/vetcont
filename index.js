@@ -41,13 +41,32 @@ app.post('/crearCuenta', indexRouter);
 app.post('/login', indexRouter);
 
 
-app.get('/registrarCitas', (req,res) => { res.render('registrarCitas'); });
-app.get('/informacionCitas', (req,res) => { res.render('informacionCitas'); });
+import registrarCitasRouter from './routes/registrarCitasRouter.js'
+import informacionCitasRouter from './routes/informacionCitasRouter.js'
+app.get('/registrarCitas', registrarCitasRouter);
+app.get('/informacionCitas', informacionCitasRouter);
+app.post('/buscarPacienteCitas', registrarCitasRouter)
+app.post('/registrarNuevaCita', registrarCitasRouter);
 
 
-app.get('/registrarConsultaGeneral', (req,res) => { res.render('registrarConsultaGeneral'); });
-app.get('/registrarConsultaVacunacion', (req,res) => { res.render('registrarConsultaVacunacion'); });
-app.get('/informacionConsultas', (req,res) => { res.render('informacionConsultas'); });
+import registrarConsultaGeneralRouter from './routes/registrarConsultaGeneralRouter.js';
+import registarConsultaVacunacionRouter from './routes/registrarConsultaVacunacionRouter.js'
+import informacionConsultasRouter from './routes/informacionConsultasRouter.js'
+
+app.get('/registrarConsultaGeneral', registrarConsultaGeneralRouter);
+app.post('/buscarPacienteConsultas', registrarConsultaGeneralRouter);
+app.post('/registrarConsultaGeneral', registrarConsultaGeneralRouter);
+
+app.get('/registrarConsultaVacunacion', registarConsultaVacunacionRouter);
+app.post('/nuevaConsultaVacunacion', registarConsultaVacunacionRouter);
+app.post('/buscarPacienteVacunacion', registarConsultaVacunacionRouter);
+
+app.get('/informacionConsultas', informacionConsultasRouter);
+app.post('/filtroConsultas', informacionConsultasRouter);
+
+
+
+
 
 
 import registrarPacientesRouter from './routes/registrarPacientesRouter.js'
@@ -60,7 +79,9 @@ app.post('/registrarMascota', registrarPacientesRouter);
 
 import informacionPacientesRouter from './routes/informacionPacientesRouter.js'
 app.get('/informacionPacientes', informacionPacientesRouter)
-app.post('/buscarPaciente', informacionPacientesRouter)
+app.post('/buscarPacienteInformacion', informacionPacientesRouter)
+app.post('/datosMascota', informacionPacientesRouter)
+
 
 
 app.get('/logout', (req, res) => {

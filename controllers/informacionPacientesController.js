@@ -32,4 +32,26 @@ informacionPacientesController.buscarPaciente = async(req, res) =>{
     }
 }
 
+
+informacionPacientesController.mostrarDatosSeleccionados = async (req, res) => {
+    const idVeterinaria = req.session.user.id;
+   
+    const nombreMascota = req.body.nombreMascota.trim();
+    const nombrePropietario = req.body.nombrePropietario.trim();
+
+    
+    try{
+        const results = await informacionPacientesModel.obtenerDatosMascota(idVeterinaria, nombreMascota, nombrePropietario)
+        res.json({
+            datosPaciente: results.datosPaciente,         
+            consultasGenerales: results.consultasGenerales,   
+            vacunacion: results.vacunacion                 
+        });
+    }catch(error){
+        onsole.log("ERROR:PERFIL:SHOWDATES: ", error);
+        res.redirect('/?error=internalError');
+    }
+   
+}
+
 export default informacionPacientesController;

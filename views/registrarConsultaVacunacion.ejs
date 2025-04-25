@@ -25,25 +25,16 @@
 
         <section class="buscadorPacienetes">
             <h2>Buscar Pacientes</h2>
-            <form>
-                <div class="mb-3">
-                  <input class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example">
+            <form action="/buscarPacienteVacunacion" method="post">
+              <div class="mb-3">
+                  <input  name="cedulaPropietario" class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example">
                 </div>
-                <button type="button" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
+                <button type="submit" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
             </form>
         </section>
 
-        <section class="listaPacientes">
+        <%- include('partials/resultadosBusqueda') %>
 
-            <table class="table text-center">
-                <tbody>
-                  <tr>
-                    <td colspan="2">No hay Resultados</td>
-                  </tr>
-                </tbody>
-              </table>
-
-        </section>
 
         
         <section class="formulario">
@@ -53,50 +44,50 @@
               <strong>Recomendación: </strong> Si buscó un paciente, seleccionelo y algunos datos se llenarán automaticamente
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <form>
+            <form action="/nuevaConsultaVacunacion" method="post">
               
               <div class="bloque">
                 <div class="mb-3">
                   <label for="" class="form-label">Nombre Propietario</label>
-                  <input class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example">
+                  <input name="nombrePropietarioVacunacion" id="nombrePropietarioVacunacion" class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Nombre Mascota</label>
-                  <input class="form-control" type="text" placeholder="Nombre Mascota ..." aria-label="default input example">
+                  <input name="nombrePacienteVacunacion" id="nombrePacienteVacunacion" class="form-control" type="text" placeholder="Nombre Mascota ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Peso Mascota</label>
-                  <input class="form-control" type="number" placeholder="Peso de la Mascota en Kg ..." aria-label="default input example">
+                  <input name="pesoVacunacion" id="pesoVacunacion" class="form-control" type="number" placeholder="Peso de la Mascota en Kg ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Programa Vacunacion</label>
-                  <input class="form-control" type="text" placeholder="Nombre de inyección ..." aria-label="default input example">
+                  <input name="nombreInyeccionVacunacion" id="nombreInyeccionVacunacion" class="form-control" type="text" placeholder="Nombre de inyección ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="exampleFormControlTextarea1" class="form-label">Programa de Despacitacion</label>
-                  <input class="form-control" type="text" placeholder="Nombre de inyección ..." aria-label="default input example">
+                  <input name="nombreInyeccionDesparacitacion" id="nombreInyeccionDesparacitacion" class="form-control" type="text" placeholder="Nombre de inyección ..." aria-label="default input example" required>
                 </div>
                 
-                <button type="button" class="btn btn-success">Confirar Consulta </button>
+                <button type="submit" class="btn btn-success">Confirmar Consulta </button>
 
               </div>
               <div class="bloque">
 
                 <div class="mb-3">
                   <label for="" class="form-label">Costo Servicios</label>
-                  <input class="form-control" type="number" placeholder="Costo por los servicios brindados ..." aria-label="default input example">
+                  <input name="costoServiciosVacunacion" id="costoServiciosVacunacion" class="form-control" type="number" placeholder="Costo por los servicios brindados ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Costo Medicamentos</label>
-                  <input class="form-control" type="number" placeholder="Costo por Medicamentos utilizados ..." aria-label="default input example">
+                  <input name="costoMedicamentosVacunacion" id="costoMedicamentosVacunacion" class="form-control" type="number" placeholder="Costo por Medicamentos utilizados ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Costo Extras</label>
-                  <input class="form-control" type="number" placeholder="Costo por Extras en la consulta ..." aria-label="default input example">
+                  <input name="costoExtrasVacunacion" id="costoExtrasVacunacion" class="form-control" type="number" placeholder="Costo por Extras en la consulta ..." aria-label="default input example" required>
                 </div>
                 <div class="mb-3">
                   <label for="" class="form-label">Nota sobre Costos</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Nota sobre los costos añadidos ..."></textarea>
+                  <input name="costoDescripcionVacunacion" id="costoDescripcionVacunacion" class="form-control" type="text" placeholder="Nota sobre los costos añadidos ..." aria-label="default input example" required>
                 </div>
   
               </div>
@@ -109,6 +100,12 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetAlert/registrarConsultaVacunacionAlerts.js"></script>
+
+    <script src="js/registrarConsultaVacunacion.js"></script>
+
 
 </body>
 </html>

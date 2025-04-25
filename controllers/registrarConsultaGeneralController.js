@@ -1,0 +1,94 @@
+
+import registrarConsultaGeneralModel from "../models/registrarConsultaGeneralModel.js";
+
+const registrarConsultaGeneralController = {}
+
+registrarConsultaGeneralController.inicio = async(req,res) => {
+
+    const results = [];
+    
+    try {
+        res.render('registrarConsultaGeneral',{datos_paciente: results} )
+
+    } catch (error) {
+        res.redirect('/?error=internalError');
+    }
+
+}
+
+registrarConsultaGeneralController.buscarPaciente = async(req, res) =>{
+
+    const {cedulaPropietario}= req.body;
+    const idVeterinaria = req.session.user.id;
+
+    try {
+        const results = await registrarConsultaGeneralModel.buscarPaciente (cedulaPropietario, idVeterinaria);
+        res.render('registrarConsultaGeneral',{datos_paciente: results});
+
+    } catch (error) {
+        console.log("ERROR:C:PETICION:START: ", error)
+        res.redirect('/?error=internalError');
+    }
+}
+
+
+registrarConsultaGeneralController.insertarConsultaGeneral = async (req, res) => {
+    
+    const nombrePropietarioConsulta = req.body.nombrePropietarioConsulta.trim();
+    const nombreMascotaConsulta = req.body.nombreMascotaConsulta.trim();
+
+    const {
+        pesoMascotaConsulta,
+        motivoConsulta,
+        medicamentosConsulta, 
+
+        costosServiciosConsulta,
+        costosMedicamentosConsulta,
+        costosExtrasConsulta,
+        notaCostosConsulta,
+
+    } = req.body;
+
+    
+    const idVeterinaria = req.session.user.id;
+
+    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD,
+
+    const ScostoMedicamentosGeneral = Number(costosMedicamentosConsulta) || 0;
+    const ScostoExtrasGeneral = Number(costosExtrasConsulta) || 0;
+    const ScostoServiciosGeneral = Number(costosServiciosConsulta) || 0;
+    
+    const costoTotalGeneral = ScostoExtrasGeneral + ScostoMedicamentosGeneral + ScostoServiciosGeneral;
+
+    const costoTipoGeneral = "CONSULTA GENERAL"
+
+    console.log("DATOS CONTROLLER : ", "nombre mascota:", nombreMascotaConsulta,"nombre propietario:", nombrePropietarioConsulta)
+    try{
+
+        const results = await registrarConsultaGeneralModel.registrarConsulta(
+            nombrePropietarioConsulta,
+            nombreMascotaConsulta,
+            pesoMascotaConsulta,
+            motivoConsulta,
+            medicamentosConsulta, 
+
+            fechaAutomatica,
+            idVeterinaria, 
+            costosServiciosConsulta,
+            costosMedicamentosConsulta,
+            costosExtrasConsulta,
+            notaCostosConsulta,
+
+            costoTotalGeneral,
+            costoTipoGeneral
+        );
+        return res.redirect('/registrarConsultaGeneral?success=consultaUpdate');
+
+    }catch(error){
+        console.log("ERROR:C:REGISTRARCONSULTAS:INSERTCONSULTA: ", error)
+        res.redirect('/?error=internalError');
+    }
+    
+}
+
+export default registrarConsultaGeneralController

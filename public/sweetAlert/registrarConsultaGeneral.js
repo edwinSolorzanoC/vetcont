@@ -10,26 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Error interno",
                 text: "Ocurrió un error inesperado. Inténtalo de nuevo.",
             });
-        }else if (errorType === "sesionError") {
+        }else if (errorType === "databaseError") {
             Swal.fire({
                 icon: "error",
-                title: "Error de sesion",
-                text: "Ocurrió un error inesperado. Inténtalo de nuevo.",
+                title: "Error en la base de datos",
+                text: "Hubo un problema al consultar la base de datos. Inténtalo nuevamente.",
             });
         }
-        
+
     } 
     
     if (urlParams.has("success")) {
         const successType = urlParams.get("success");
 
-        if (successType === "loginSuccess") {
+        if(successType === "consultaUpdate"){
             Swal.fire({
                 icon: "success",
-                title: "Inicio de sesión exitoso",
-                text: "Bienvenido a VETCONT",
+                title: "¡Consulta registrada exitosamente!",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 1500
             });
         }
         

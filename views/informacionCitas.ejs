@@ -41,7 +41,7 @@
                 <table class="table table-striped">
                     <thead class="">
                       <tr class="text-center">
-                        <th  colspan="5">
+                        <th  colspan="6">
                           Registro Total de Citas
                         </th>
                       </tr>
@@ -51,30 +51,51 @@
                         <th scope="col">Fecha Cita</th>
                         <th scope="col">Hora Cita</th>
                         <th scope="col">Motivo</th>
+                        <th scope="col">Estado</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Edwin Gerardo Solorzano Campos</td>
-                        <td>Jack</td>
-                        <td>24/03/2025</td>
-                        <td>13:00</td>
-                        <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      </tr>
-                      <tr>
-                        <td>Edwin Gerardo Solorzano Campos</td>
-                        <td>Jack</td>
-                        <td>24/03/2025</td>
-                        <td>13:00</td>
-                        <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      </tr>
-                      <tr>
-                        <td>Edwin Gerardo Solorzano Campos</td>
-                        <td>Jack</td>
-                        <td>24/03/2025</td>
-                        <td>13:00</td>
-                        <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                      </tr>
+
+                      <% console.log(datosCitas) %>
+
+                      <% if (datosCitas && Array.isArray(datosCitas) && datosCitas.length > 0) { %>
+
+
+                          <tbody>
+                            
+                            <% datosCitas.forEach(dato => { %>
+                              <tr class="table-hover linea_tabla" id="linea_tabla">
+                                <td><%=dato.tb_propietarios_col_nombre%></td>
+                                <td><%=dato.tb_pacientes_col_nombre%></td>
+                                <td>
+                                  <%= new Date(dato.tb_citas_col_fecha).toLocaleDateString('es-ES') %>
+                                </td>
+                                <td><%=dato.tb_citas_col_hora%></td>
+                                <td><%=dato.tb_citas_col_motivo%></td>
+                                <td>
+                                  <%= dato.tb_citas_col_estado[0] === 1 ? "Pendiente" : "No disponible" %>
+                                </td>
+                                
+                              </tr>
+                  
+                              <% }); %>
+                          
+                          </tbody>
+                  
+                        
+                  
+                    <% } else { %>
+                  
+                        <tbody>
+                          
+                          <tr>
+                            <td colspan="6" style="text-align: center;">No hay resultados de busqueda</td>
+                          </tr>
+                        
+                        </tbody>
+                        
+                    <% } %>
+                      
                     </tbody>
                   </table>
 

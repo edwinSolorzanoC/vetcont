@@ -1,0 +1,14 @@
+@import url(main.css);
+
+
+
+
+#informacionVacunacion{
+    display: none;
+}
+#informacionPaciente{
+    display: none;
+}
+#informacionPropietario{
+    display: none;
+}

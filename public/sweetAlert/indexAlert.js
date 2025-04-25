@@ -24,8 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Usuario no encontrado",
                 text: "No se encontró un usuario con ese nombre de usuario.",
             });
+        } else if (errorType === "sesionError") {
+            Swal.fire({
+                icon: "error",
+                title: "Lo sentimos, Error de sesion",
+                text: "Ocurrió un error inesperado. Inicie sesion de nuevo.",
+            });
         }
-        //crear  cuenta
     } 
     
     if (urlParams.has("success")) {
