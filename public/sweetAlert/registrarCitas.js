@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (urlParams.has("success")) {
         const successType = urlParams.get("success");
 
-        if (successType === "loginSuccess") {
+        if (successType === "saveCita") {
             Swal.fire({
                 icon: "success",
-                title: "Inicio de sesión exitoso",
-                text: "Bienvenido a VETCONT",
+                title: "Cita Agendada",
+                text: "La cita fue agendada exitosamente",
                 showConfirmButton: false,
                 timer: 2000
             });

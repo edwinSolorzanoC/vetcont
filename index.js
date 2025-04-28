@@ -33,7 +33,8 @@ app.set('views', path.join(process.cwd(), 'views'));
 // estas son las rutas de la aplicacion para ejecutar las paginas 
 app.get('/', (req, res) => { res.render('index'); });
 
-app.get('/inicio', (req,res) => { res.render('inicio'); });
+import inicioRouter from './routes/inicioRouter.js'
+app.get('/inicio', inicioRouter);
 
 
 import indexRouter from './routes/indexRouter.js'

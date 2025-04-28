@@ -29,6 +29,15 @@ registrarCitasModel.nuevaCita = async(
     motivoCita
 ) => {
 
+    const queryDisponibilidad = `
+    
+    SELECT tb_citas_col_fecha, tb_citas_col_hora
+    FROM tb_citas
+    WHERE tb_citas_col_fecha = ? AND
+    tb_citas_col_hora = ? AND
+    tb_citas_col_estado = ?
+    ;
+    `;
     const queryIds = `
     SELECT tb_propietarios.tb_propietarios_col_cedula, tb_pacientes.idtb_pacientes
     FROM tb_propietarios
@@ -48,9 +57,10 @@ registrarCitasModel.nuevaCita = async(
     tb_citas_col_fecha,
     tb_citas_col_hora,
     tb_citas_col_estado,
-    tb_citas_col_motivo
+    tb_citas_col_motivo,
+    tb_usuariosVeterinaria_idtb_usuariosVeterinaria
     )VALUES(
-    ?, ?, ?, ?, ?, ?
+    ?, ?, ?, ?, ?, ?, ?
     );
     `;
 
@@ -62,7 +72,7 @@ registrarCitasModel.nuevaCita = async(
         const idMascota = datosIds[0].idtb_pacientes;
 
 
-        await pool.execute(queryInsertar, [idPropietario, idMascota, fechaCita, horaCita, estadoCita, motivoCita])
+        await pool.execute(queryInsertar, [idPropietario, idMascota, fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
 
     } catch (error) {
         console.log("Error en model de registrar citas, registrando Citas: ", error)
