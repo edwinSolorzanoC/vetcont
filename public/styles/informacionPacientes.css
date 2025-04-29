@@ -12,3 +12,7 @@
 #informacionPropietario{
     display: none;
 }
+
+main{
+    min-height: 110vh;
+}

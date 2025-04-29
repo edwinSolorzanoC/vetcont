@@ -54,7 +54,8 @@ registrarConsultaVacunacionController.insertaVacunacion = async (req, res) => {
 
     const costoTotalVacunacion = ScostoMedicamentosVacunacion + ScostoExtrasVacunacion + ScostoServiciosVacunacion;
 
-    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD
+    const ahora = new Date();
+    const fechaAutomatica = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
 
     const costoTipoVacunacion = "Consulta Vacunacion"
 

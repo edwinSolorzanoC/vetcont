@@ -29,8 +29,45 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
     ;
     `;
 
+    const queryConsultasGenerales = `
+    SELECT idtb_consultaGeneral, tb_consultaGeneral_col_nombrePropietario, tb_consultaGeneral_col_nombrePaciente,
+    tb_consultaGeneral_col_motivo,
+    tb_consultaGeneral_col_medicamentosUtilizados,
+    tb_costosConsultas_col_total
+    
+    FROM tb_consultageneral
+    
+    JOIN tb_costosconsultas
+    ON tb_consultageneral.idtb_consultaGeneral = tb_costosconsultas.tb_consultaGeneral_idtb_consultaGeneral
+    
+    WHERE tb_consultaGeneral_col_fecha = ? AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?; 
+    `;
+
+    const queryConsultasVacunacion = `
+   
+    SELECT idtb_consultaVacunacion, tb_consultaVacunacion_col_nombrePropietario, tb_consultaVacunacion_col_nombrePaciente,
+    tb_consultaVacunacion_col_vacunacion, tb_consultaVacunacion_col_desparacitacion, tb_costosConsultas_col_total
+    
+    FROM tb_consultavacunacion
+
+    JOIN tb_costosconsultas
+    ON tb_consultavacunacion.idtb_consultaVacunacion = tb_costosconsultas.tb_consultaVacunacion_idtb_consultaVacunacion
+
+    WHERE tb_consultaVacunacion_col_fecha = ? AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;
+    `;
+
     try {
-        await pool.execute(queryCitas,[idVeterinaria, fechaAutomatica])
+        const [resultadosCitas] = await pool.execute(queryCitas,[idVeterinaria, fechaAutomatica]);
+        const [resultadosGeneral] = await pool.execute(queryConsultasGenerales, [fechaAutomatica, idVeterinaria]);
+        const [resultadosVacunacion] = await pool.execute(queryConsultasVacunacion, [fechaAutomatica, idVeterinaria]);
+
+
+        return {
+            citas: resultadosCitas,
+            consultasGenerales: resultadosGeneral,
+            consultasVacunacion: resultadosVacunacion
+        };
+        
     } catch (error) {
         console.log("Error en el model de incio", error)
     }

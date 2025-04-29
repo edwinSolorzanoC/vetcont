@@ -43,7 +43,8 @@ registrarPacintesController.registrarMascotas = async (req, res) => {
         } = req.body;
 
 
-        const fechaConsultaMascota = new Date().toISOString().slice(0, 10);
+        const ahora = new Date();
+        const fechaConsultaMascota = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
         const idVeterinaria  = req.session.user.id;
 
 

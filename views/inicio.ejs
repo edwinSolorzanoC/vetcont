@@ -30,9 +30,8 @@
           <button type="button" class="btn button" id="btn_mostrarConsultas">Mostrar consultas realizadas <i class="fa-solid fa-notes-medical"></i> </button>
         </div>
 
-        <% console.log(citas) %>
         <div class="proximasCitas" id="proximasCitas">
-          <table class="table table-striped">
+          <table class="table table-striped" id="miTabla">
             <thead class="">
               <tr class="text-center">
                 <th  colspan="5">
@@ -43,37 +42,48 @@
                 <th scope="col">Nombre Propietario</th>
                 <th scope="col">Nombre Mascota</th>
                 <th scope="col">Hora Cita</th>
+                <th scope="col">Fecha</th>
                 <th scope="col">Motivo</th>
+
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>13:00</td>
-                <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo</td>
-              </tr>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>13:00</td>
-                <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo</td>
-              </tr>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>13:00</td>
-                <td class="motivoCitaTabla">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo</td>
-              </tr>
-            </tbody>
+            <% if (citas && Array.isArray(citas) && citas.length > 0) { %>
+
+              <tbody>
+                <% citas.forEach(dato => { %>
+                  <tr class="table-hover linea_tabla" id="linea_tabla">
+                    <td><%=dato.tb_propietarios_col_nombre%></td>
+                    <td><%=dato.tb_pacientes_col_nombre%></td>
+                    <td><%=dato.tb_citas_col_hora%></td>
+                    <td>
+                      <%= new Date(dato.tb_citas_col_fecha).toLocaleDateString('es-ES') %>
+                    </td>
+                    <td><%=dato.tb_citas_col_motivo%></td>
+                    
+                  </tr>
+      
+                  <% }); %>
+              </tbody>
+
+              <% } else { %>
+
+                <tbody>
+            
+                  <tr>
+                    <td colspan="5" style="text-align: center;">No hay resultados de busqueda</td>
+                  </tr>
+                
+                </tbody>
+
+                <% } %>
           </table>
         </div>
 
         <div class="consultasRealizadas" id="consultasRealizadas">
-          <table class="table table-striped">
-            <thead class="">
+          <table class="table table-striped" id="">
+            <thead id="">
               <tr class="text-center">
-                <th  colspan="7">
+                <th  colspan="5">
                   Registro Total de Consultas realizadas en el dia
                 </th>
               </tr>
@@ -82,42 +92,58 @@
                 <th scope="col">Nombre Mascota</th>
                 <th scope="col">Descripcion consulta</th>
                 <th scope="col">Medicamentos utilizados</th>
-                <th scope="col">Hora Consulta</th>
                 <th scope="col">Costo Total</th>
 
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td> Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td>10:00</td>
-                <td>25000</td>
-              </tr>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td> Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td>10:00</td>
-                <td>25000</td>
-              </tr>
-              <tr>
-                <td>Edwin Gerardo Solorzano Campos</td>
-                <td>Jack</td>
-                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimo Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum mollitia amet ea at est temporibus optio minus voluptatum recusandae qui, saepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td> Dignissimo Lorem ipsusaepe officiis sed tenetur deserunt porro non rem perspiciatis. Quia.</td>
-                <td>10:00</td>
-                <td>25000</td>
-              </tr>
-            </tbody>
+            <% if (consultasTotales && Array.isArray(consultasTotales) && consultasTotales.length > 0) { %>
+
+              <tbody>
+                <% consultasTotales.forEach(dato => { %>
+                  <tr class="table-hover linea_tabla" id="linea_tabla">
+            
+                    <% if (dato.tb_consultaGeneral_col_nombrePropietario) { %>
+                      <!-- Mostrar consulta general -->
+                      <td><%= dato.tb_consultaGeneral_col_nombrePropietario %></td>
+                      <td><%= dato.tb_consultaGeneral_col_nombrePaciente %></td>
+                      <td><%= dato.tb_consultaGeneral_col_motivo %></td>
+                      <td><%= dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
+                      <td>₡ <%= dato.tb_costosConsultas_col_total %></td>
+            
+                    <% } else { %>
+                      <!-- Mostrar consulta vacunación -->
+                      <td><%= dato.tb_consultaVacunacion_col_nombrePropietario %></td>
+                      <td><%= dato.tb_consultaVacunacion_col_nombrePaciente %></td>
+                      <td>Consulta de control</td>
+                      <td>Vacunacion: <%= dato.tb_consultaVacunacion_col_vacunacion %> <br> Desparacitacion: <%= dato.tb_consultaVacunacion_col_desparacitacion %></td>
+                      <td>₡ <%= dato.tb_costosConsultas_col_total %></td>
+                    <% } %>
+            
+                  </tr>
+                <% }); %>
+              </tbody>
+            
+            <% } else { %>
+            
+              <tbody>
+                <tr>
+                  <td colspan="5" style="text-align: center;">No hay resultados de búsqueda</td>
+                </tr>
+              </tbody>
+            
+            <% } %>
+            
           </table>
 
         </div>
 
       </section>
+
+      <div id="menu" class="menu">
+        <ul>
+            <li id="opcion1">Finalizar Cita</li>
+        </ul>
+      </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

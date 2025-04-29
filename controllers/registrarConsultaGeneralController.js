@@ -52,7 +52,8 @@ registrarConsultaGeneralController.insertarConsultaGeneral = async (req, res) =>
     
     const idVeterinaria = req.session.user.id;
 
-    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD,
+    const ahora = new Date();
+    const fechaAutomatica = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
 
     const ScostoMedicamentosGeneral = Number(costosMedicamentosConsulta) || 0;
     const ScostoExtrasGeneral = Number(costosExtrasConsulta) || 0;

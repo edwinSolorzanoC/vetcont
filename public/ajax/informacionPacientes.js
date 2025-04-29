@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     nuevaFila.insertCell(0).textContent = formatearFecha(item.tb_consultaGeneral_col_fecha);
                     nuevaFila.insertCell(1).textContent = item.tb_consultaGeneral_col_motivo;
                     nuevaFila.insertCell(2).textContent = item.tb_consultaGeneral_col_medicamentosUtilizados;
-                    nuevaFila.insertCell(3).textContent = "₡ " + item.tb_costosConsultas_col_total;
+                    nuevaFila.insertCell(3).textContent = item.tb_consultaGeneral_col_actualizacionPeso + "Kg";
+                    nuevaFila.insertCell(4).textContent = "₡ " + item.tb_costosConsultas_col_total;
                 });
 
                 const tablaVacunacion = document.getElementById('tablaInformacionvacunacion').querySelector('tbody');

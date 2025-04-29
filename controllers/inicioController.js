@@ -11,12 +11,21 @@ inicioController.peticionIncio = async (req,res) => {
         return res.redirect('/?error=sesionError');
     }
     const idVeterinaria = req.session.user.id;
-    const fechaAutomatica = new Date().toISOString().slice(0, 10); // Formato: YYYY-MM-DD,
+    const ahora = new Date();
+    const fechaAutomatica = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
+
+    console.log("FEcha hoy coontroller: ", fechaAutomatica)
 
     try {
         
-        const citasdeHoy = await inicioModel.inicio(idVeterinaria, fechaAutomatica);
-        res.render('inicio', {citas:citasdeHoy})
+        const { citas, consultasGenerales, consultasVacunacion } = await inicioModel.inicio(idVeterinaria, fechaAutomatica);
+
+        const consultasTotales = [...consultasGenerales, ...consultasVacunacion];
+        res.render('inicio', {
+            citas,
+            consultasTotales
+        });
+        
         
     } catch (error) {
         console.log("Error en el controller de inicio", error)
