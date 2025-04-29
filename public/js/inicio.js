@@ -55,8 +55,9 @@ document.addEventListener('DOMContentLoaded', function(){
     // Acciones del menú contextual
     document.getElementById('opcion1').addEventListener('click', () => {
         if (filaSeleccionada) {
-            const nombrePropietario = filaSeleccionada.cells[0].textContent;
-            const nombreMascota = filaSeleccionada.cells[1].textContent;
+            const id = filaSeleccionada.cells[0].textContent;
+            const nombrePropietario = filaSeleccionada.cells[1].textContent;
+            const nombreMascota = filaSeleccionada.cells[2].textContent;
 
     
             // Mostrar la alerta de SweetAlert
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function(){
                         icon: 'success',
                     })
                     // se hace una ruta donde se reciva el id y se cancele la cita
-                    // window.location.href = `/FinalizarCita/${id}`;
+                    window.location.href = `/FinalizarCita/${id}`;
                 }
             });
         }

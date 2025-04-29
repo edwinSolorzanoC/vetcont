@@ -14,7 +14,6 @@ inicioController.peticionIncio = async (req,res) => {
     const ahora = new Date();
     const fechaAutomatica = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
 
-    console.log("FEcha hoy coontroller: ", fechaAutomatica)
 
     try {
         
@@ -32,4 +31,15 @@ inicioController.peticionIncio = async (req,res) => {
     }
 }
 
+inicioController.editarEstado = async(req,res) => {
+    const idCita = req.params.idCita;
+    console.log("Controlador id: ", idCita);
+
+    try {
+        await inicioModel.finalizarCita(idCita);
+        await inicioController.peticionIncio(req,res);
+    } catch (error) {
+        console.log("Error en el contorller de editar cita: ", error)
+    }
+}
 export default inicioController;

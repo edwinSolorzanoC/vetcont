@@ -35,7 +35,7 @@ app.get('/', (req, res) => { res.render('index'); });
 
 import inicioRouter from './routes/inicioRouter.js'
 app.get('/inicio', inicioRouter);
-
+app.get('/FinalizarCita/:idCita', inicioRouter)
 
 import indexRouter from './routes/indexRouter.js'
 app.post('/crearCuenta', indexRouter);

@@ -30,13 +30,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Lo sentimos, Error de sesion",
                 text: "Ocurrió un error inesperado. Inicie sesion de nuevo.",
             });
+        }else if (errorType === "invalidKey") {
+            Swal.fire({
+                icon: "error",
+                title: "Clave de seguridad incorrecta",
+                text: "La clave de seguridad ingresada no es correcta. Intente de nuevo.",
+            });
+        }
+        else if (errorType === "invalidPassword") {
+            Swal.fire({
+                icon: "error",
+                title: "Contraseña Invalida",
+                text: "La contraseña no es valida. Intente de nuevo.",
+            });
         }
     } 
     
     if (urlParams.has("success")) {
         const successType = urlParams.get("success");
 
-
+        if (successType === "userCreated") {
+            Swal.fire({
+                icon: "success",
+                title: "Bienvenido a Vetcont",
+                text: "La cuenta fue creada exitosamente. Puede iniciar sesion",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        }
         
     }
 

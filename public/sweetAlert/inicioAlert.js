@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (successType === "loginSuccess") {
             Swal.fire({
                 icon: "success",
-                title: "Inicio de sesión exitoso",
-                text: "Bienvenido a VETCONT",
+                title: "Bienvenido a Vetcont",
+                text: "Inicio de sesion exitoso",
                 showConfirmButton: false,
                 timer: 2000
             });

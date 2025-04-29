@@ -1,5 +1,6 @@
 
-Hace falta funcionalidad en finalizar citas en el inicio
+
 hace falta generar el pdf en informacion de pacientes
 hace falta mostrar el desgloce del precio de las consultas
 hace falta arreglar el mostrra coonsultas en el inicio
+

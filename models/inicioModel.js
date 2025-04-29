@@ -1,5 +1,6 @@
 
 
+import { query } from 'express';
 import pool from '../config/conexion.js'
 
 const inicioModel = {}
@@ -70,6 +71,23 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
         
     } catch (error) {
         console.log("Error en el model de incio", error)
+    }
+}
+
+inicioModel.finalizarCita = async (idCita) => {
+   
+    const query = `
+    UPDATE tb_citas
+    SET tb_citas_col_estado = 0
+    WHERE idtb_citas = ?; 
+    `;
+
+    try {
+      
+        await pool.execute(query, [idCita])
+
+    } catch (error) {
+        console.log("Error en el model de inicio finalizar cita: ", error)
     }
 }
 
