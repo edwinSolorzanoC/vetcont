@@ -95,6 +95,10 @@ document.addEventListener('DOMContentLoaded', function () {
             margin: { left: margenIzquierdo, right: 14 },
         });
 
+
+        const nombrePropietario = tablaInformacionPropietario.querySelector("tbody tr td")?.innerText || "Desconocido";
+        const nombreArchivo = `Reporte ${nombrePropietario} ${fechaActual}.pdf`;
+
         // Pie de página con número de página (en cada página generada)
         const totalPages = doc.internal.getNumberOfPages();
         for (let i = 1; i <= totalPages; i++) {
@@ -104,6 +108,6 @@ document.addEventListener('DOMContentLoaded', function () {
             doc.text(`Página ${i}`, margenIzquierdo, pageHeight - 10);
         }
 
-        doc.save("REPORTE.pdf");
+        doc.save(nombreArchivo);
     });
 });
