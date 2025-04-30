@@ -1,0 +1,5 @@
+# Ignorar archivos de configuración locales
+.env
+
+# Ignorar la carpeta node_modules
+node_modules/
