@@ -1,6 +1,5 @@
 
 
-import { query } from 'express';
 import pool from '../config/conexion.js'
 
 const inicioModel = {}

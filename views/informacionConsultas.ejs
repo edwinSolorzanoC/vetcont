@@ -55,9 +55,8 @@
                   <tbody>
                     <% datosConsultaGeneral.forEach(dato => { %>
                       <tr class="">
-
-                        <td><%=dato.tb_consultaGeneral_col_nombrePaciente %></td>
                         <td class="propietario"><%=dato.tb_consultaGeneral_col_nombrePropietario %></td>
+                        <td><%=dato.tb_consultaGeneral_col_nombrePaciente %></td>
                         <td class="pesoConsulta"><%=dato.tb_consultaGeneral_col_actualizacionPeso %> Kg</td>
                         <td class="motivo"><%=dato.tb_consultaGeneral_col_motivo %></td>
                         <td class="tratamiento"><%=dato.tb_consultaGeneral_col_medicamentosUtilizados %></td>
@@ -94,8 +93,8 @@
                 <tbody>
                   <% datosConsultaVacunacion.forEach(dato => { %>
                     <tr>
+                      <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
                         <td><%=dato.tb_consultaVacunacion_col_nombrePaciente %></td>
-                        <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
                         <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %>Kg</td>
                         <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
                         <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>

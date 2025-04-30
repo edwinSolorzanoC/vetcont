@@ -5,5 +5,6 @@ import informacionCitasController from "../controllers/informacionCitasControlle
 const router = express.Router();
 
 router.get('/informacionCitas', informacionCitasController.pedirCitas)
+router.post('/buscarCitas', informacionCitasController.buscarCitas)
 
 export default router

@@ -59,11 +59,9 @@ registrarConsultaGeneralModel.registrarConsulta = async (
             nombrePropietarioConsulta
         ]);
 
-        console.log("Resultados busqueda existencia paciente: ", resultsBusqueda)
 
         let idMascota = resultsBusqueda.length ? resultsBusqueda[0].idtb_pacientes : null;
 
-        console.log("id de mascota",idMascota)
         const peticionConsulta = `
             INSERT INTO tb_consultageneral (
                 tb_consultaGeneral_col_nombrePropietario, 

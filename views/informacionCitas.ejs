@@ -22,18 +22,18 @@
 
           <h1>Registro total de citas</h1>
             <section class="buscadorPacienetes">
-                <h2>Añadir filtro de busqueda</h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Fecha de inicio</label>
-                        <input class="form-control" type="date" placeholder="Default input" aria-label="default input example">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Fecha final</label>
-                        <input class="form-control" type="date" placeholder="Default input" aria-label="default input example">
-                    </div>
-                    <button type="button" class="btn button">Añadir Filtro <i class="fa-solid fa-filter"></i> </button>
-                </form>
+              <h2>Añadir filtro de busqueda</h2>
+              <form action="/buscarCitas" method="post">
+                <div class="mb-3">
+                    <label for="" class="form-label">Fecha de inicio</label>
+                    <input class="form-control" type="date" name="fechaInicio" id="fechaInicio" placeholder="Default input" aria-label="default input example" required>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Fecha final</label>
+                    <input class="form-control" type="date" name="fechaFinal" id="fechaFinal" placeholder="Default input" aria-label="default input example" required>
+                </div>
+                <button type="submit" class="btn button">Añadir Filtro <i class="fa-solid fa-filter"></i> </button>
+              </form>
             </section>
 
             <div class="table-container listaCitas">
@@ -56,14 +56,14 @@
                     </thead>
                     <tbody>
 
-                      <% console.log(datosCitas) %>
-
                       <% if (datosCitas && Array.isArray(datosCitas) && datosCitas.length > 0) { %>
 
 
                           <tbody>
                             
                             <% datosCitas.forEach(dato => { %>
+
+                              
                               <tr class="table-hover linea_tabla" id="linea_tabla">
                                 <td><%=dato.tb_propietarios_col_nombre%></td>
                                 <td><%=dato.tb_pacientes_col_nombre%></td>

@@ -33,8 +33,6 @@ inicioController.peticionIncio = async (req,res) => {
 
 inicioController.editarEstado = async(req,res) => {
     const idCita = req.params.idCita;
-    console.log("Controlador id: ", idCita);
-
     try {
         await inicioModel.finalizarCita(idCita);
         await inicioController.peticionIncio(req,res);

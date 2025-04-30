@@ -63,7 +63,6 @@ registrarConsultaGeneralController.insertarConsultaGeneral = async (req, res) =>
 
     const costoTipoGeneral = "CONSULTA GENERAL"
 
-    console.log("DATOS CONTROLLER : ", "nombre mascota:", nombreMascotaConsulta,"nombre propietario:", nombrePropietarioConsulta)
     try{
 
         const results = await registrarConsultaGeneralModel.registrarConsulta(
