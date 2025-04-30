@@ -1,5 +1,6 @@
 
 
+import { query } from 'express';
 import pool from '../config/conexion.js'
 
 const informacionConsultasModel = {};
@@ -8,7 +9,7 @@ const informacionConsultasModel = {};
 informacionConsultasModel.peticionConsultas = async(idVeterinaria) => {
     try {
         const peticionConsultasGenerales = `
-        SELECT 
+        SELECT  idtb_consultaGeneral,
         tb_consultaGeneral_col_fecha, tb_consultaGeneral_col_nombrePropietario,
         tb_consultaGeneral_col_nombrePaciente, tb_consultaGeneral_col_motivo,
         tb_consultaGeneral_col_medicamentosUtilizados, tb_consultaGeneral_col_actualizacionPeso,
@@ -54,4 +55,26 @@ informacionConsultasModel.peticionConsultas = async(idVeterinaria) => {
     }
 }
 
+informacionConsultasModel.consultarCostos = async(idConsulta) => {
+
+    const query =  `
+    SELECT 
+    idtb_costosConsultas,
+    tb_costosConsultas_col_medicamentos,
+    tb_costosConsultas_col_extras,
+    tb_costosConsultas_col_consultal,
+    tb_costosConsultas_col_descripcion,
+    tb_costosConsultas_col_total,
+    tb_consultaGeneral_idtb_consultaGeneral
+    FROM tb_costosconsultas 
+    WHERE tb_consultaGeneral_idtb_consultaGeneral = ?;`;
+
+    try {
+        const [resultados] = await pool.execute(query, [idConsulta])
+        return resultados;
+        
+    } catch (error) {
+        console.log("Error en el model solicitando costos: ", error)
+    }
+}
 export default informacionConsultasModel;

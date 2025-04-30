@@ -1,6 +1,7 @@
 
 
 
-hace falta mostrar el desgloce del precio de las consultas
-hace falta arreglar el mostrra coonsultas en el inicio
+hace falta mostrar el desgloce del precio de las consultas. YA ESTA
+    recomendacion: agrgar al inicio
+
 

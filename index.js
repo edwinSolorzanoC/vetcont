@@ -66,6 +66,8 @@ app.post('/buscarPacienteVacunacion', registarConsultaVacunacionRouter);
 app.get('/informacionConsultas', informacionConsultasRouter);
 app.post('/filtroConsultas', informacionConsultasRouter);
 
+app.post('/consultarCostos', informacionConsultasRouter);
+
 
 
 

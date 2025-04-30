@@ -24,6 +24,22 @@ informacionConsultasController.inicioConsultas = async (req, res) => {
     }
 };
 
+informacionConsultasController.costos = async(req,res) => {
+
+    if (!req.session || !req.session.user || !req.session.user.id) {
+        return res.redirect('/inicio?error=sesionError');
+    }
+
+    const idConsulta = req.body.idConsulta;
+    try {
+
+        const resultado = await informacionConsultasModel.consultarCostos(idConsulta);
+        return res.json(resultado);
+    
+    } catch (error) {
+        console.log("Error en el controller de costos: ", error)   
+    }
+}
 
 
 
