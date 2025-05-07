@@ -77,4 +77,27 @@ informacionConsultasModel.consultarCostos = async(idConsulta) => {
         console.log("Error en el model solicitando costos: ", error)
     }
 }
+
+
+informacionConsultasModel.consultarCostosVacunacion = async(idConsulta) => {
+
+    const query =  `
+    SELECT 
+    idtb_costosConsultas,
+    tb_costosConsultas_col_medicamentos,
+    tb_costosConsultas_col_extras,
+    tb_costosConsultas_col_consultal,
+    tb_costosConsultas_col_descripcion,
+    tb_costosConsultas_col_total,
+    tb_consultaVacunacion_idtb_consultaVacunacion
+    FROM tb_costosconsultas WHERE tb_consultaVacunacion_idtb_consultaVacunacion = ?;`;
+
+    try {
+        const [resultados] = await pool.execute(query, [idConsulta])
+        return resultados;
+        
+    } catch (error) {
+        console.log("Error en el model solicitando costos: ", error)
+    }
+}
 export default informacionConsultasModel;

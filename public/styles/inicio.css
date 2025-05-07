@@ -29,3 +29,47 @@
 .menu ul li:hover {
     background-color: #f0f0f0;
 }
+
+
+/* -- */
+
+.menuConcultas {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menuConcultas ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuConcultas ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menuConcultas ul li:hover {
+    background-color: #f0f0f0;
+}
+.pantallaFlotante {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    color: white;
+    padding: 2rem;
+    max-width: 90%;
+    max-height: 90%;
+    min-height: 90%;
+    min-width: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}

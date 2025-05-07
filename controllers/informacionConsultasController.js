@@ -31,8 +31,13 @@ informacionConsultasController.costos = async(req,res) => {
     }
 
     const idConsulta = req.body.idConsulta;
+    const descripcion = req.body.descripcion;
     try {
 
+        if(descripcion === "Consulta de control"){
+            const resultado = await informacionConsultasModel.consultarCostosVacunacion(idConsulta);
+            return res.json(resultado);
+        }
         const resultado = await informacionConsultasModel.consultarCostos(idConsulta);
         return res.json(resultado);
     

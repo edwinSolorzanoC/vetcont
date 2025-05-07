@@ -83,6 +83,125 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         menu.style.display = 'none';
     });
+
+
+
+ 
+    // pantalla consultas 
+
+
+    const pantalla = document.getElementById("pantallaFlotante");
+
+    function mostrarPantalla(
+        nombrePropietario, 
+        nombreMascota,
+        costoConsulta,
+        costoMedicamentos,
+        costoExtras,
+        costoDescripcion,
+        costoTotal,
+        fechaConsulta) {
+        pantalla.style.display = 'block'
+        
+        const tablaCostos = document.getElementById('tablaPantalla').querySelector('tbody');
+        tablaCostos.innerHTML = "";  // Limpiar la tabla
+
+        
+        const nuevaFila = tablaCostos.insertRow();
+        nuevaFila.insertCell(0).textContent = (nombrePropietario);
+        nuevaFila.insertCell(1).textContent = (nombreMascota);
+        nuevaFila.insertCell(2).textContent = (fechaConsulta);
+        nuevaFila.insertCell(3).textContent = "₡ " +(costoConsulta);
+        nuevaFila.insertCell(4).textContent = "₡ " +(costoMedicamentos);
+        nuevaFila.insertCell(5).textContent = "₡ " +(costoExtras);
+        nuevaFila.insertCell(6).textContent = (costoDescripcion);
+        nuevaFila.insertCell(7).textContent = "₡ " +(costoTotal);
+
+    }
+
+    document.getElementById("cerraVentana").addEventListener('click', function(){
+        pantalla.style.display = 'none'
+    })
+
+    const tablaConsultas = document.getElementById('tablaConsultasGenerales');
+    let filaSeleccionadaConsultas = null; // Para almacenar la fila seleccionada
+    const menuConsultas = document.getElementById('menuConcultas');
+
+    tablaConsultas.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // Evitar el menú contextual por defecto
+
+        // Verificar si se hizo clic en una fila de la tabla (no en las celdas)
+        if (e.target.tagName === 'TD') {
+            // Obtener la fila en la que se hizo clic
+            filaSeleccionadaConsultas = e.target.closest('tr');
+
+            // Obtener las coordenadas del clic
+            const mouseX = e.pageX;
+            const mouseY = e.pageY;
+
+            // Mostrar el menú en las coordenadas del clic
+            menuConsultas.style.display = 'block';
+            menuConsultas.style.left = `${mouseX}px`;
+            menuConsultas.style.top = `${mouseY}px`;
+        }
+    });
+
+     // Ocultar el menú cuando se hace clic en cualquier parte de la página
+    document.addEventListener('click', (e) => {
+        if (!menuConsultas.contains(e.target) && e.target.tagName !== 'TD') {
+            menuConsultas.style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('costos').addEventListener('click', () => {
+        if (filaSeleccionadaConsultas) {
+            const idConsulta = filaSeleccionadaConsultas.cells[0].textContent;
+            const nombrePropietario = filaSeleccionadaConsultas.cells[1].textContent;
+            const nombreMascota = filaSeleccionadaConsultas.cells[2].textContent;
+            const descripcion = filaSeleccionadaConsultas.cells[3].textContent;
+            const ahora = new Date();
+            const fechaConsulta = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
+
+
+            fetch('/consultarCostos', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({idConsulta, descripcion})
+            }).then(response => response.json()).then(resultado => {
+                console.log("Datos recividos: ", resultado);
+
+                if (resultado.length > 0) {
+                    const costoMedicamentos = resultado[0].tb_costosConsultas_col_medicamentos;
+                    const costoConsulta = resultado[0].tb_costosConsultas_col_consultal;
+                    const costoExtras = resultado[0].tb_costosConsultas_col_extras;
+                    const costoTotal = resultado[0].tb_costosConsultas_col_total;
+                    const costoDescripcion = resultado[0].tb_costosConsultas_col_descripcion;
+
+                    mostrarPantalla(
+                        nombrePropietario, 
+                        nombreMascota,
+                        costoConsulta,
+                        costoMedicamentos,
+                        costoExtras,
+                        costoDescripcion,
+                        costoTotal,
+                        fechaConsulta
+                    );
+                } else {
+                    console.log("No se encontraron costos para esta consulta.");
+                }
+
+            })
+            
+    
+        }
+        menuConsultas.style.display = 'none';
+    });
+
+    
     
 
    

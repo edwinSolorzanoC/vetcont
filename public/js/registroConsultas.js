@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
     })
 
-
     const tabla = document.getElementById('tablaConsultasGenerales');
     let filaSeleccionada = null; // Para almacenar la fila seleccionada
     const menu = document.getElementById('menu');

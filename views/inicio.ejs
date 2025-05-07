@@ -30,7 +30,7 @@
           <button type="button" class="btn button" id="btn_mostrarConsultas">Mostrar consultas realizadas <i class="fa-solid fa-notes-medical"></i> </button>
         </div>
 
-        <div class="proximasCitas" id="proximasCitas">
+        <div class="proximasCitas table-container"" id="proximasCitas">
           <table class="table table-striped" id="miTabla">
             <thead class="">
               <tr class="text-center">
@@ -83,8 +83,8 @@
           </table>
         </div>
 
-        <div class="consultasRealizadas" id="consultasRealizadas">
-          <table class="table table-striped" id="">
+        <div class="consultasRealizadas table-container" id="consultasRealizadas">
+          <table class="table table-striped" id="tablaConsultasGenerales">
             <thead id="">
               <tr class="text-center" >
                 <th  colspan="5" style="text-align: center; background-color: rgb(213, 213, 213);">
@@ -100,6 +100,7 @@
 
               </tr>
             </thead>
+
             <% if (consultasTotales && Array.isArray(consultasTotales) && consultasTotales.length > 0) { %>
 
               <tbody>
@@ -108,6 +109,7 @@
             
                     <% if (dato.tb_consultaGeneral_col_nombrePropietario) { %>
                       <!-- Mostrar consulta general -->
+                      <td style="display: none;"><%= dato.idtb_consultaGeneral %></td>
                       <td><%= dato.tb_consultaGeneral_col_nombrePropietario %></td>
                       <td><%= dato.tb_consultaGeneral_col_nombrePaciente %></td>
                       <td><%= dato.tb_consultaGeneral_col_motivo %></td>
@@ -116,6 +118,7 @@
             
                     <% } else { %>
                       <!-- Mostrar consulta vacunación -->
+                      <td style="display: none;"><%= dato.idtb_consultaVacunacion %></td>
                       <td><%= dato.tb_consultaVacunacion_col_nombrePropietario %></td>
                       <td><%= dato.tb_consultaVacunacion_col_nombrePaciente %></td>
                       <td>Consulta de control</td>
@@ -147,6 +150,37 @@
         <ul>
             <li id="opcion1">Finalizar Cita</li>
         </ul>
+      </div>
+
+
+      <div id="menuConcultas" class="menuConcultas">
+        <ul>
+            <li id="costos">Mas información</li>
+        </ul>
+      </div>
+
+
+      <div class="pantallaFlotante" id="pantallaFlotante">
+        <button type="button" class="btn button mb-2" id="cerraVentana"> Cerrar</button>
+        <table class="table table-striped" id="tablaPantalla">
+          <thead>
+            <tr class="text-center">
+              <th scope="col">Propietario</th>
+              <th scope="col">Mascota</th>
+              <th scope="col">Fecha Consulta</th>
+              <th scope="col">Servicios</th>
+              <th scope="col">Medicamentos</th>
+              <th scope="col">Extras</th>
+              <th scope="col">Descripcion Costos</th>
+              <th scope="col">Costo Final Consulta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center">
+            </tr>
+           
+          </tbody>
+        </table>
       </div>
     </main>
 
