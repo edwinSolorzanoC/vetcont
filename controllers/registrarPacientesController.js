@@ -25,7 +25,6 @@ registrarPacintesController.registrarPropietarios = async (req, res) => {
         );
         return res.redirect('/registrarPacientes?success=newRegister')
     }catch(error){
-        console.log("ERROR:REGISTRO:REGISTRAR: ", error)
         return res.redirect('/registrarPacientes?error=databaseError')
     }
 }
@@ -60,7 +59,6 @@ registrarPacintesController.registrarMascotas = async (req, res) => {
         return res.redirect('/registrarPacientes?success=newRegister')
 
     }catch(error){
-        console.log("ERROR:REGISTRO:REGISTRAR: ", error)
         return res.redirect('/registrarPacientes?error=internalError')
     }
     

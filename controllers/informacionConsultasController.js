@@ -19,7 +19,6 @@ informacionConsultasController.inicioConsultas = async (req, res) => {
         });
 
     }catch(error){
-        console.log("ERROR:CONSULTAS:START: ", error)
         res.redirect('/inicio?error=internalError');
     }
 };
@@ -42,7 +41,7 @@ informacionConsultasController.costos = async(req,res) => {
         return res.json(resultado);
     
     } catch (error) {
-        console.log("Error en el controller de costos: ", error)   
+        res.redirect('/?error=internalError');
     }
 }
 

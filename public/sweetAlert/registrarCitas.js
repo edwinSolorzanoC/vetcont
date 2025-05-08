@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Error de sesion",
                 text: "Ocurrió un error inesperado. Inténtalo de nuevo.",
             });
+        }else if (errorType === "nodisponible") {
+            Swal.fire({
+                icon: "error",
+                title: "Cita no disponible",
+                text: "Ya existen citas agendadas en este horario",
+            });
         }
         
     } 

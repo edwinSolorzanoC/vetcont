@@ -26,7 +26,6 @@ registrarConsultaGeneralController.buscarPaciente = async(req, res) =>{
         res.render('registrarConsultaGeneral',{datos_paciente: results});
 
     } catch (error) {
-        console.log("ERROR:C:PETICION:START: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -85,7 +84,6 @@ registrarConsultaGeneralController.insertarConsultaGeneral = async (req, res) =>
         return res.redirect('/registrarConsultaGeneral?success=consultaUpdate');
 
     }catch(error){
-        console.log("ERROR:C:REGISTRARCONSULTAS:INSERTCONSULTA: ", error)
         res.redirect('/?error=internalError');
     }
     

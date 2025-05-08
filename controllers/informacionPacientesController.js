@@ -27,7 +27,6 @@ informacionPacientesController.buscarPaciente = async(req, res) =>{
         res.render('informacionPacientes',{datos_paciente: results});
 
     } catch (error) {
-        console.log("ERROR:C:PETICION:START: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -48,7 +47,6 @@ informacionPacientesController.mostrarDatosSeleccionados = async (req, res) => {
             vacunacion: results.vacunacion                 
         });
     }catch(error){
-        onsole.log("ERROR:PERFIL:SHOWDATES: ", error);
         res.redirect('/?error=internalError');
     }
    

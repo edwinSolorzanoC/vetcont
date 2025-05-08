@@ -50,7 +50,6 @@ informacionConsultasModel.peticionConsultas = async(idVeterinaria) => {
 
 
     } catch (error) {
-        console.log("ERROR:M:CONSULTAS:START: ", error)
         res.redirect('/inicio?error=internalError');
     }
 }
@@ -74,7 +73,7 @@ informacionConsultasModel.consultarCostos = async(idConsulta) => {
         return resultados;
         
     } catch (error) {
-        console.log("Error en el model solicitando costos: ", error)
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -97,7 +96,7 @@ informacionConsultasModel.consultarCostosVacunacion = async(idConsulta) => {
         return resultados;
         
     } catch (error) {
-        console.log("Error en el model solicitando costos: ", error)
+        res.redirect('/?error=internalError');
     }
 }
 export default informacionConsultasModel;

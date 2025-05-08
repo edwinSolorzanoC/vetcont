@@ -15,7 +15,7 @@ informacionCitasController.pedirCitas = async(req,res) => {
         const citas = await informacionCitasModel.mostrarCitas(idVeterinaria)
         res.render('informacionCitas', {datosCitas: citas})
     } catch (error) {
-        console.log("Error en el controller de informacion Citas")        
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -33,7 +33,7 @@ informacionCitasController.buscarCitas = async(req,res) => {
         const resultados = await informacionCitasModel.buscarCita(fechaInicio, fechaFinal, idVeterinaria);
         res.render('informacionCitas', {datosCitas: resultados})
     } catch (error) {
-        console.log("Error en el controller de buscar citas: ", error)
+        res.redirect('/?error=internalError');
     }
 
 }

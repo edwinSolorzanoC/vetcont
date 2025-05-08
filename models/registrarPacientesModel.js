@@ -19,7 +19,6 @@ registrarPacintesModel.insertarPropietario = async (cedulaPropietario, nombrePro
             return results
 
         }catch(error){
-            console.log("ERROR:M:REGISTRO:INSERT: ", error)
             res.redirect('/?error=internalError');
         }
 
@@ -69,7 +68,6 @@ registrarPacintesModel.insertarMascota = async (nombreMascota, tipoMascota, peso
         }catch(error){
             await conecction.rollback();
             conecction.release();
-            console.log("ERROR:M:REGISTRO:INSERT: ", error)
             res.redirect('/?error=internalError');
 
         }

@@ -35,7 +35,7 @@ informacionCitasModel.mostrarCitas = async(idVeterinaria) => {
         return resultados;
         
     } catch (error) {
-        console.log("Error en el model de informacion citas")
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -70,7 +70,7 @@ informacionCitasModel.buscarCita = async(fechaInicio, fechaFinal, idVeterinaria)
         return resultados
 
     } catch (error) {
-        console.log("Error en el model de buscar citas", error)
+        res.redirect('/?error=internalError');
     }
 }
 

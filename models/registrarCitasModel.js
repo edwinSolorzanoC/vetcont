@@ -15,7 +15,6 @@ registrarCitasModel.buscarPaciente = async(cedulaPropietario, idVeterinaria) => 
         const [results] = await pool.execute(peticionDatos, [cedulaPropietario, idVeterinaria]);
         return results;
     } catch (error) {
-        console.log("ERROR:M:REGISTRARCITAS:BUSCARP: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -35,7 +34,7 @@ registrarCitasModel.nuevaCita = async(
     FROM tb_citas
     WHERE tb_citas_col_fecha = ? AND
     tb_citas_col_hora = ? AND
-    tb_citas_col_estado = ?
+    tb_citas_col_estado = 1
     ;
     `;
     const queryIds = `
@@ -66,6 +65,12 @@ registrarCitasModel.nuevaCita = async(
 
     try {
 
+        const [disponibilidad] = await pool.execute(queryDisponibilidad, [fechaCita, horaCita]);
+
+        if(disponibilidad.length > 0){
+            throw new Error('horaNoDisponible');
+        }
+
         const [datosIds] = await pool.execute(queryIds, [nombreMascotaCita, nombrePropietarioCita, idVeterinaria]);
 
         const idPropietario = datosIds[0].tb_propietarios_col_cedula;
@@ -75,7 +80,7 @@ registrarCitasModel.nuevaCita = async(
         await pool.execute(queryInsertar, [idPropietario, idMascota, fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
 
     } catch (error) {
-        console.log("Error en model de registrar citas, registrando Citas: ", error)
+        throw error; // No reemplaces el error
     }
 }
 

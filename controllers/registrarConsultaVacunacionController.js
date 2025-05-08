@@ -28,7 +28,6 @@ registrarConsultaVacunacionController.buscarPaciente = async(req, res) =>{
         res.render('registrarConsultaVacunacion',{datos_paciente: results});
 
     } catch (error) {
-        console.log("ERROR:C:PETICION:START: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -82,7 +81,6 @@ registrarConsultaVacunacionController.insertaVacunacion = async (req, res) => {
         return res.redirect('/registrarConsultaVacunacion?success=consultaUpdate');
 
     }catch(error){
-        console.log("ERROR:ADMIN:CONSULTAVAC: ", error)
         res.redirect('/registrarConsultaVacunacion?error=internalError');
     }
 

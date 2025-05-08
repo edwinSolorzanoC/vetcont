@@ -18,7 +18,6 @@ registrarConsultaVacunacionModel.buscarPaciente = async(cedulaPropietario, idVet
         const [results] = await pool.execute(peticionDatos, [cedulaPropietario, idVeterinaria]);
         return results;
     } catch (error) {
-        console.log("ERROR:M:REGISTRARCONSGENERAL:BUSCARP: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -110,7 +109,6 @@ registrarConsultaVacunacionModel.registrarConsulta = async (
     }catch(error){
         await conecction.rollback();
         conecction.release();
-        console.log("ERROR:M:ADMIN:CONSULTAVAC: ", error)
         res.redirect('/?error=internalError');
         
     }

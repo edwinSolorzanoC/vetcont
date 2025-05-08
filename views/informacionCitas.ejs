@@ -58,7 +58,7 @@
 
                       <% if (datosCitas && Array.isArray(datosCitas) && datosCitas.length > 0) { %>
 
-
+                        <% datosCitas.sort((a, b) => new Date(b.tb_citas_col_fecha) - new Date(a.tb_citas_col_fecha)); %>
                           <tbody>
                             
                             <% datosCitas.forEach(dato => { %>
@@ -73,7 +73,7 @@
                                 <td><%=dato.tb_citas_col_hora%></td>
                                 <td><%=dato.tb_citas_col_motivo%></td>
                                 <td>
-                                  <%= dato.tb_citas_col_estado[0] === 1 ? "Pendiente" : "No disponible" %>
+                                  <%= dato.tb_citas_col_estado[0] === 1 ? "Pendiente" : "Finalizada/Cancelada" %>
                                 </td>
                                 
                               </tr>

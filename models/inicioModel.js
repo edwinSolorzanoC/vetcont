@@ -69,7 +69,7 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
         };
         
     } catch (error) {
-        console.log("Error en el model de incio", error)
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -86,7 +86,7 @@ inicioModel.finalizarCita = async (idCita) => {
         await pool.execute(query, [idCita])
 
     } catch (error) {
-        console.log("Error en el model de inicio finalizar cita: ", error)
+        res.redirect('/?error=internalError');
     }
 }
 

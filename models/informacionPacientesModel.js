@@ -17,7 +17,6 @@ informacionPacientesModel.buscarPaciente = async(cedulaPropietario, idVeterinari
         const [results] = await pool.execute(peticionDatos, [cedulaPropietario, idVeterinaria]);
         return results;
     } catch (error) {
-        console.log("ERROR:M:INFOPACIENTES:CONSULTA: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -114,7 +113,6 @@ informacionPacientesModel.obtenerDatosMascota = async (idVeterinaria,nombreMasco
         }
 
     }catch(error){
-        console.log("ERROR:M:PERFIL:GETDATES: ", error)
         res.redirect('/?error=internalError');
     }
 

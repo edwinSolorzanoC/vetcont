@@ -33,7 +33,6 @@ indexController.crearUsuario = async (req, res) => {
         return res.redirect('/?success=userCreated')
     }catch(error){
         //Error interno
-        console.log("ERROR:INDEX:SINGIN: ", error);
         return res.redirect('/?success=internalError')
     }
 };
@@ -73,7 +72,6 @@ indexController.iniciarSesion = async (req, res) => {
         }
     } catch (error) {
         // Manejo de errores en el controlador
-        console.error("ERROR:NDEX:LOGIN: ", error);
         return res.redirect('/?error=internalError');
     }
 };

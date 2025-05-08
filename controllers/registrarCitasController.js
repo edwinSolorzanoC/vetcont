@@ -33,7 +33,6 @@ registrarCitasController.buscarPaciente = async(req, res) =>{
         res.render('registrarCitas',{datos_paciente: results});
 
     } catch (error) {
-        console.log("ERROR:C:REGISTRARCITAS:BUSCARP: ", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -66,7 +65,12 @@ registrarCitasController.nuevaCita = async(req,res) => {
 
         res.redirect('registrarCitas?success=saveCita')
     } catch (error) {
-        console.log("Error en el contorller donde se registran citas: ", error)
+        console.log(error)
+        if (error.message === 'horaNoDisponible') {
+            res.redirect('/registrarCitas?error=nodisponible');
+          } else if (error.message === 'errorInterno') {
+            res.redirect('/inicio?error=internalError');
+          }
     }
 }
 export default registrarCitasController;

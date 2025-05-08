@@ -7,7 +7,6 @@ const inicioController = {};
 inicioController.peticionIncio = async (req,res) => {
 
     if (!req.session || !req.session.user || !req.session.user.id) {
-        console.log("Erroe en el id")
         return res.redirect('/?error=sesionError');
     }
     const idVeterinaria = req.session.user.id;
@@ -27,7 +26,7 @@ inicioController.peticionIncio = async (req,res) => {
         
         
     } catch (error) {
-        console.log("Error en el controller de inicio", error)
+        res.redirect('/?error=internalError');
     }
 }
 
@@ -37,7 +36,7 @@ inicioController.editarEstado = async(req,res) => {
         await inicioModel.finalizarCita(idCita);
         await inicioController.peticionIncio(req,res);
     } catch (error) {
-        console.log("Error en el contorller de editar cita: ", error)
+        res.redirect('/?error=internalError');
     }
 }
 export default inicioController;
