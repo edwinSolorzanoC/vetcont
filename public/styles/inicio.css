@@ -73,3 +73,21 @@
     object-fit: contain;
     border-radius: 8px;
 }
+
+.formularioFlotante {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    color: white;
+    padding: 2rem;
+    max-width: 90%;
+    max-height: 90%;
+    min-height: 90%;
+    min-width: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}

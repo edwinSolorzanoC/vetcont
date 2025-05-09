@@ -63,7 +63,6 @@
                             
                             <% datosCitas.forEach(dato => { %>
 
-                              
                               <tr class="table-hover linea_tabla" id="linea_tabla">
                                 <td><%=dato.tb_propietarios_col_nombre%></td>
                                 <td><%=dato.tb_pacientes_col_nombre%></td>
@@ -73,7 +72,7 @@
                                 <td><%=dato.tb_citas_col_hora%></td>
                                 <td><%=dato.tb_citas_col_motivo%></td>
                                 <td>
-                                  <%= dato.tb_citas_col_estado[0] === 1 ? "Pendiente" : "Finalizada/Cancelada" %>
+                                  <%= dato.tb_citas_col_estado === 1 ? "Pendiente" : dato.tb_citas_col_estado === 3 ? "Cancelada" : "Finalizada" %>
                                 </td>
                                 
                               </tr>

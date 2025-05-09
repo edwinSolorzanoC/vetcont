@@ -84,6 +84,58 @@ document.addEventListener('DOMContentLoaded', function(){
         menu.style.display = 'none';
     });
 
+    document.getElementById('opcion2').addEventListener('click', () => {
+        if (filaSeleccionada) {
+            const id = filaSeleccionada.cells[0].textContent;
+            const nombrePropietario = filaSeleccionada.cells[1].textContent;
+            const nombreMascota = filaSeleccionada.cells[2].textContent;
+
+    
+            // Mostrar la alerta de SweetAlert
+            Swal.fire({
+                title: 'Cancelar Cita?',
+                text: `Estás a punto de cancelar la cita de: ${nombrePropietario} con ${nombreMascota}`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Confirmar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: 'Cita Cancelada',
+                        text: `La cita se Canceló con exito`,
+                        icon: 'success',
+                    })
+                    // se hace una ruta donde se reciva el id y se cancele la cita
+                    window.location.href = `/CancelarCita/${id}`;
+                }
+            });
+        }
+        menu.style.display = 'none';
+    });
+
+
+    const formularioFlotante = document.getElementById("FormularioFlotante");
+
+    document.getElementById("cerraFormulario").addEventListener('click', function(){
+        formularioFlotante.style.display = 'none'
+    })
+
+    document.getElementById('opcion3').addEventListener('click', () => {
+        const id = filaSeleccionada.cells[0].textContent;
+        const descripcion = filaSeleccionada.cells[5].textContent;
+
+        formularioFlotante.style.display = 'block'
+        document.getElementById("idCitaFormulario").value = id;
+        document.getElementById("descripcionReprogramada").value = descripcion;
+
+        menu.style.display = 'none';
+
+
+    });
+    
+
 
 
  
@@ -204,7 +256,14 @@ document.addEventListener('DOMContentLoaded', function(){
     
     
 
-   
+const inputFecha = document.getElementById("nuevaFechaRprogramada");
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0'); // Mes con 2 dígitos
+  const dd = String(hoy.getDate()).padStart(2, '0'); // Día con 2 dígitos
+  const fechaHoy = `${yyyy}-${mm}-${dd}`;
+
+    inputFecha.min = fechaHoy;
 })
 
 

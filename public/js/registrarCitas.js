@@ -12,4 +12,16 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     })
 
+
+    
+
+const inputFecha = document.getElementById("fechaCita");
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0'); // Mes con 2 dígitos
+  const dd = String(hoy.getDate()).padStart(2, '0'); // Día con 2 dígitos
+  const fechaHoy = `${yyyy}-${mm}-${dd}`;
+
+    inputFecha.min = fechaHoy;
+
 })

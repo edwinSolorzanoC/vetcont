@@ -31,6 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false,
                 timer: 2000
             });
+        }else if (successType === "citaReprogramada") {
+            Swal.fire({
+                icon: "success",
+                title: "Cita reprogramada",
+                text: "La cita fue reprogramada con exito",
+            });
         }
         
     }

@@ -39,4 +39,36 @@ inicioController.editarEstado = async(req,res) => {
         res.redirect('/?error=internalError');
     }
 }
+
+inicioController.cancelarCita = async(req,res) => {
+    const idCita = req.params.idCita;
+    try {
+        await inicioModel.cancelarCita(idCita);
+        await inicioController.peticionIncio(req,res);
+    } catch (error) {
+        res.redirect('/?error=internalError');
+    }
+}
+
+inicioController.reprogramarCita = async(req,res) => {
+    const {idCitaFormulario,
+        nuevaFechaRprogramada,
+        nuevaHoraReprogramada,
+        descripcionReprogramada
+    } = req.body;
+
+    try {
+        
+        await inicioModel.reprogramarCita(idCitaFormulario,
+        nuevaFechaRprogramada,
+        nuevaHoraReprogramada,
+        descripcionReprogramada);
+
+        
+        res.redirect('/inicio?success=citaReprogramada');
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 export default inicioController;
