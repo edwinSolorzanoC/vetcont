@@ -45,6 +45,26 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     });
 
+    let touchTimeout;
+
+tabla.addEventListener('touchstart', (e) => {
+    if (e.target.tagName === 'TD') {
+        touchTimeout = setTimeout(() => {
+            const touch = e.touches[0];
+            filaSeleccionada = e.target.closest('tr');
+
+            menu.style.display = 'block';
+            menu.style.left = `${touch.pageX}px`;
+            menu.style.top = `${touch.pageY}px`;
+        }, 600); // 600ms para long press
+    }
+});
+
+tabla.addEventListener('touchend', () => {
+    clearTimeout(touchTimeout); // Cancelar si fue solo un toque rápido
+});
+
+
     // Ocultar el menú cuando se hace clic en cualquier parte de la página
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && e.target.tagName !== 'TD') {
@@ -62,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
             // Mostrar la alerta de SweetAlert
             Swal.fire({
-                title: 'Finalizar Cita?',
+                title: 'La cita ya fue realizada?',
                 text: `Estás a punto de finalizar la cita de: ${nombrePropietario} con ${nombreMascota}`,
                 icon: 'warning',
                 showCancelButton: true,
@@ -124,11 +144,19 @@ document.addEventListener('DOMContentLoaded', function(){
 
     document.getElementById('opcion3').addEventListener('click', () => {
         const id = filaSeleccionada.cells[0].textContent;
+        const fecha = filaSeleccionada.cells[4].textContent;
+        const hora = filaSeleccionada.cells[3].textContent;
         const descripcion = filaSeleccionada.cells[5].textContent;
 
         formularioFlotante.style.display = 'block'
         document.getElementById("idCitaFormulario").value = id;
         document.getElementById("descripcionReprogramada").value = descripcion;
+        document.getElementById("nuevaHoraReprogramada").value = hora;
+
+        const fechaObj = new Date(fecha); // Si fecha es tipo Date o un string convertible
+        const fechaFormateada = fechaObj.toISOString().split("T")[0];
+        document.getElementById("nuevaFechaRprogramada").value = fechaFormateada;
+
 
         menu.style.display = 'none';
 

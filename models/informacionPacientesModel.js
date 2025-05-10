@@ -83,6 +83,7 @@ informacionPacientesModel.obtenerDatosMascota = async (idVeterinaria,nombreMasco
         tb_consultaVacunacion_col_fecha,
         tb_consultaVacunacion_col_desparacitacion,
         tb_consultaVacunacion_col_vacunacion,
+        tb_consultaVacunacion_col_actualizacionPeso,
         tb_costosConsultas_col_total
         
         FROM tb_consultavacunacion

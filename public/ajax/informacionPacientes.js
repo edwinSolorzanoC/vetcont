@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     nuevaFila.insertCell(0).textContent = formatearFecha(item.tb_consultaVacunacion_col_fecha);
                     nuevaFila.insertCell(1).textContent = item.tb_consultaVacunacion_col_desparacitacion;
                     nuevaFila.insertCell(2).textContent = item.tb_consultaVacunacion_col_vacunacion;
-                    nuevaFila.insertCell(3).textContent = "CRC " + item.tb_costosConsultas_col_total;
+                    nuevaFila.insertCell(3).textContent = item.tb_consultaVacunacion_col_actualizacionPeso + "Kg";
+                    nuevaFila.insertCell(4).textContent = "CRC " + item.tb_costosConsultas_col_total;
                 });
 
             })

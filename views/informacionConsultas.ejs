@@ -95,13 +95,14 @@
                 <tbody>
                   <% datosConsultaVacunacion.forEach(dato => { %>
                     <tr>
+                      <td style="display: none;"><%=dato.idtb_consultaVacunacion %></td>
                       <td><%=dato.tb_consultaVacunacion_col_nombrePropietario %></td>
-                        <td><%=dato.tb_consultaVacunacion_col_nombrePaciente %></td>
-                        <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %>Kg</td>
-                        <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
-                        <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>
-                        <td><%= new Date(dato.tb_consultaVacunacion_col_fecha).toLocaleDateString('es-ES') %></td>
-                        <td>₡  <%=dato.tb_costosConsultas_col_total %></td>
+                      <td><%=dato.tb_consultaVacunacion_col_nombrePaciente %></td>
+                      <td><%=dato.tb_consultaVacunacion_col_actualizacionPeso %>Kg</td>
+                      <td><%=dato.tb_consultaVacunacion_col_vacunacion %></td>
+                      <td><%=dato.tb_consultaVacunacion_col_desparacitacion %></td>
+                      <td><%= new Date(dato.tb_consultaVacunacion_col_fecha).toLocaleDateString('es-ES') %></td>
+                      <td>₡  <%=dato.tb_costosConsultas_col_total %></td>
                     </tr>
                 <%}); %>
                  
@@ -118,6 +119,11 @@
         <div id="menu" class="menu">
           <ul>
               <li id="opcion1">Mas información</li>
+          </ul>
+        </div>
+        <div id="menuDos" class="menuDos">
+          <ul>
+              <li id="opcion2">Mas información</li>
           </ul>
         </div>
 

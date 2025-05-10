@@ -55,6 +55,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
     })
 
+
+
+
+
+
     const tabla = document.getElementById('tablaConsultasGenerales');
     let filaSeleccionada = null; // Para almacenar la fila seleccionada
     const menu = document.getElementById('menu');
@@ -136,6 +141,95 @@ document.addEventListener('DOMContentLoaded', function(){
         menu.style.display = 'none';
     });
 
+
+
+
+    // consultas vacunacion 
+
+
+
+
+    
+    const tablaV = document.getElementById('consultasVacunacion');
+    let filaSeleccionadaV = null; // Para almacenar la fila seleccionada
+    const menuV = document.getElementById('menuDos');
+
+
+     // Mostrar el menú contextual al hacer clic derecho en una fila
+    tablaV.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // Evitar el menú contextual por defecto
+
+        // Verificar si se hizo clic en una fila de la tabla (no en las celdas)
+        if (e.target.tagName === 'TD') {
+            // Obtener la fila en la que se hizo clic
+            filaSeleccionadaV = e.target.closest('tr');
+
+            // Obtener las coordenadas del clic
+            const mouseX = e.pageX;
+            const mouseY = e.pageY;
+
+            // Mostrar el menú en las coordenadas del clic
+            menuV.style.display = 'block';
+            menuV.style.left = `${mouseX}px`;
+            menuV.style.top = `${mouseY}px`;
+        }
+    });
+
+
+    // Ocultar el menú cuando se hace clic en cualquier parte de la página
+    document.addEventListener('click', (e) => {
+        if (!menuV.contains(e.target) && e.target.tagName !== 'TD') {
+            menuV.style.display = 'none';
+        }
+    });
+
+     document.getElementById('opcion2').addEventListener('click', () => {
+        if (filaSeleccionadaV) {
+            const idConsulta = filaSeleccionadaV.cells[0].textContent;
+            const nombrePropietario = filaSeleccionadaV.cells[1].textContent;
+            const nombreMascota = filaSeleccionadaV.cells[2].textContent;
+            const fechaConsulta = filaSeleccionadaV.cells[6].textContent;
+            const descripcion = "Consulta de control";
+
+
+
+            fetch('/consultarCostos', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({idConsulta, descripcion})
+            }).then(response => response.json()).then(resultado => {
+                console.log("Datos recividos: ", resultado);
+
+                if (resultado.length > 0) {
+                    const costoMedicamentos = resultado[0].tb_costosConsultas_col_medicamentos;
+                    const costoConsulta = resultado[0].tb_costosConsultas_col_consultal;
+                    const costoExtras = resultado[0].tb_costosConsultas_col_extras;
+                    const costoTotal = resultado[0].tb_costosConsultas_col_total;
+                    const costoDescripcion = resultado[0].tb_costosConsultas_col_descripcion;
+
+                    mostrarPantalla(
+                        nombrePropietario, 
+                        nombreMascota,
+                        costoConsulta,
+                        costoMedicamentos,
+                        costoExtras,
+                        costoDescripcion,
+                        costoTotal,
+                        fechaConsulta
+                    );
+                } else {
+                    console.log("No se encontraron costos para esta consulta.");
+                }
+
+            })
+            
+            // window.location.href = `/FinalizarCita/${id}`;
+    
+        }
+        menuV.style.display = 'none';
+    });
 
 
 })

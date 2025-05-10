@@ -48,3 +48,28 @@
 }
 
 
+
+
+.menuDos {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menuDos ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menuDos ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menuDos ul li:hover {
+    background-color: #f0f0f0;
+}

@@ -102,7 +102,7 @@
               </tr>
             </thead>
 
-            <% console.log(citas)%>
+            
             <% if (consultasTotales && Array.isArray(consultasTotales) && consultasTotales.length > 0) { %>
 
               <tbody>
@@ -150,9 +150,9 @@
 
       <div id="menu" class="menu">
         <ul>
-            <li id="opcion1">Finalizar</li>
-            <li id="opcion2">Cancelar</li>
-            <li id="opcion3">Reprogramar</li>
+            <li id="opcion1">Finalizar Cita</li>
+            <li id="opcion2">Cancelar Cita</li>
+            <li id="opcion3">Reprogramar Cita</li>
         </ul>
       </div>
 
@@ -189,7 +189,6 @@
 
 
       <div class="formularioFlotante" id="FormularioFlotante">
-        <button type="button" class="btn btn-warning mb-2" id="cerraFormulario"> Cerrar</button>
         
 
         <form action="/reprogramarCita" method="post" autocomplete="off">
@@ -208,10 +207,11 @@
             <input name="nuevaHoraReprogramada" id="nuevaHoraReprogramada" class="form-control" type="time" placeholder="..." aria-label="default input example" required>
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Nueva Descripcion (opcional)</label>
+            <label for="" class="form-label">Nueva Descripcion</label>
             <input name="descripcionReprogramada" id="descripcionReprogramada" class="form-control" type="text" placeholder="..." aria-label="default input example" required>
           </div>
           <button type="submit" class="btn btn-success">Aceptar</button>
+          <button type="button" class="btn btn-warning" id="cerraFormulario">Cancelar</button>
 
         </form>
 

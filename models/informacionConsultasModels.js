@@ -26,7 +26,7 @@ informacionConsultasModel.peticionConsultas = async(idVeterinaria) => {
 
 
         const peticionConsultasVacunacion =   `
-        SELECT 
+        SELECT idtb_consultaVacunacion,
         tb_consultaVacunacion_col_fecha, tb_consultaVacunacion_col_nombrePaciente,
         tb_consultaVacunacion_col_nombrePropietario, tb_consultaVacunacion_col_vacunacion, 
         tb_consultaVacunacion_col_desparacitacion, tb_consultaVacunacion_col_actualizacionPeso
