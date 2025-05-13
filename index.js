@@ -52,6 +52,8 @@ app.get('/informacionCitas', informacionCitasRouter);
 app.post('/buscarPacienteCitas', registrarCitasRouter)
 app.post('/registrarNuevaCita', registrarCitasRouter);
 app.post('/buscarCitas', informacionCitasRouter);
+app.get('/cancelarCitaInformacion/:idCita', informacionCitasRouter)
+app.post('/reprogramarCitaInformacion', informacionCitasRouter)
 
 
 import registrarConsultaGeneralRouter from './routes/registrarConsultaGeneralRouter.js';

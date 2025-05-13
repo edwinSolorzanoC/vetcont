@@ -80,7 +80,7 @@ registrarCitasModel.nuevaCita = async(
         await pool.execute(queryInsertar, [idPropietario, idMascota, fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
 
     } catch (error) {
-        throw error; // No reemplaces el error
+        throw error; 
     }
 }
 

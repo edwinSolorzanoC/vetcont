@@ -144,19 +144,11 @@ tabla.addEventListener('touchend', () => {
 
     document.getElementById('opcion3').addEventListener('click', () => {
         const id = filaSeleccionada.cells[0].textContent;
-        const fecha = filaSeleccionada.cells[4].textContent;
-        const hora = filaSeleccionada.cells[3].textContent;
         const descripcion = filaSeleccionada.cells[5].textContent;
 
         formularioFlotante.style.display = 'block'
         document.getElementById("idCitaFormulario").value = id;
         document.getElementById("descripcionReprogramada").value = descripcion;
-        document.getElementById("nuevaHoraReprogramada").value = hora;
-
-        const fechaObj = new Date(fecha); // Si fecha es tipo Date o un string convertible
-        const fechaFormateada = fechaObj.toISOString().split("T")[0];
-        document.getElementById("nuevaFechaRprogramada").value = fechaFormateada;
-
 
         menu.style.display = 'none';
 

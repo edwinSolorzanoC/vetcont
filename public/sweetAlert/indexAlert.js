@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (errorType === "sesionError") {
             Swal.fire({
                 icon: "error",
-                title: "Lo sentimos, Error de sesion",
-                text: "Ocurrió un error inesperado. Inicie sesion de nuevo.",
+                title: "Se perdio la sesion",
+                text: "Lo sentimos. Inicie sesion de nuevo.",
             });
         }else if (errorType === "invalidKey") {
             Swal.fire({
@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: "error",
                 title: "Contraseña Invalida",
                 text: "La contraseña no es valida. Intente de nuevo.",
+            });
+        }else if (errorType === "cuentasuspendida") {
+            Swal.fire({
+                icon: "error",
+                title: "Cuenta Suspendida",
+                text: "Su cuenta ha sido suspendida, le recomendamos contactar con el equipo administrativo vetcont",
             });
         }
     } 

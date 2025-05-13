@@ -45,7 +45,8 @@ indexModel.consultaBaseDatos = async (username) => {
     SELECT 
     idtb_usuariosVeterinaria, 
     tb_usuariosVeterinaria_col_usuario, 
-    tb_usuariosVeterinaria_col_contrasenna 
+    tb_usuariosVeterinaria_col_contrasenna,
+    tb_usuariosVeterinaria_col_estado
     
     FROM tb_usuariosveterinaria
     

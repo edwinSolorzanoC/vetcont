@@ -74,5 +74,55 @@ informacionCitasModel.buscarCita = async(fechaInicio, fechaFinal, idVeterinaria)
     }
 }
 
+informacionCitasModel.cancelarCita = async (idCita) => {
+   
+    const query = `
+    UPDATE tb_citas
+    SET tb_citas_col_estado = 3
+    WHERE idtb_citas = ?; 
+    `;
+
+    try {
+      
+        await pool.execute(query, [idCita])
+
+    } catch (error) {
+        res.redirect('/?error=internalError');
+    }
+}
+
+
+informacionCitasModel.reprogramarCita = async (
+    idCitaFormulario,
+    nuevaFechaRprogramada,
+    nuevaHoraReprogramada,
+    descripcionReprogramada) => {
+
+    const query = `
+    UPDATE tb_citas
+    SET tb_citas_col_estado = 1,
+    tb_citas_col_motivo = ?,
+    tb_citas_col_fecha = ?,
+    tb_citas_col_hora = ?
+    WHERE idtb_citas = ?; 
+    `;
+
+
+    try {
+      
+        await pool.execute(query, [
+        descripcionReprogramada,
+        nuevaFechaRprogramada,
+        nuevaHoraReprogramada,
+        idCitaFormulario,
+        ])
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 export default informacionCitasModel;
 

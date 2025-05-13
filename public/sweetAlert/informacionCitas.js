@@ -24,14 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (urlParams.has("success")) {
         const successType = urlParams.get("success");
 
-        if (successType === "loginSuccess") {
-            Swal.fire({
-                icon: "success",
-                title: "Bienvenido a Vetcont",
-                showConfirmButton: false,
-                timer: 2000
-            });
-        }else if (successType === "citaReprogramada") {
+        if (successType === "citaReprogramada") {
             Swal.fire({
                 icon: "success",
                 title: "Cita Reprogramada",

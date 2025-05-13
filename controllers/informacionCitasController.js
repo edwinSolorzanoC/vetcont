@@ -37,4 +37,41 @@ informacionCitasController.buscarCitas = async(req,res) => {
     }
 
 }
+
+
+
+informacionCitasController.cancelarCita = async(req,res) => {
+    const idCita = req.params.idCita;
+    try {
+        await informacionCitasModel.cancelarCita(idCita);
+       
+        res.redirect('/informacionCitas?success=citaCancelada');
+    } catch (error) {
+        res.redirect('/?error=internalError');
+    }
+}
+
+
+informacionCitasController.reprogramarCita = async(req,res) => {
+    const {idCitaFormulario,
+        nuevaFechaRprogramada,
+        nuevaHoraReprogramada,
+        descripcionReprogramada
+    } = req.body;
+
+    try {
+        
+        await informacionCitasModel.reprogramarCita(idCitaFormulario,
+        nuevaFechaRprogramada,
+        nuevaHoraReprogramada,
+        descripcionReprogramada);
+
+        
+        res.redirect('/informacionCitas?success=citaReprogramada');
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export default informacionCitasController;

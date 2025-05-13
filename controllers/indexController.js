@@ -57,6 +57,7 @@ indexController.iniciarSesion = async (req, res) => {
                 
                 req.session.user = {
                     id: usuario.idtb_usuariosVeterinaria,
+                    estado: usuario.tb_usuariosVeterinaria_col_estado
                 };
 
                 // Inicio de sesión exitoso

@@ -10,6 +10,20 @@ inicioController.peticionIncio = async (req,res) => {
         return res.redirect('/?error=sesionError');
     }
     const idVeterinaria = req.session.user.id;
+    const estadoVeterinaria = req.session.user.estado;
+
+    if (estadoVeterinaria === 2) {
+    return req.session.destroy(err => {
+        if (err) {
+            console.error('Error al destruir la sesión:', err);
+            return res.status(500).send('Error al cerrar sesión');
+        }
+        res.clearCookie('connect.sid'); // Opcional, para asegurarse
+        return res.redirect('/?error=cuentasuspendida');
+    });
+}
+
+
     const ahora = new Date();
     const fechaAutomatica = `${ahora.getFullYear()}-${String(ahora.getMonth() + 1).padStart(2, '0')}-${String(ahora.getDate()).padStart(2, '0')}`;
 
@@ -34,7 +48,7 @@ inicioController.editarEstado = async(req,res) => {
     const idCita = req.params.idCita;
     try {
         await inicioModel.finalizarCita(idCita);
-        await inicioController.peticionIncio(req,res);
+        res.redirect('/inicio?success=citaFinalizada');
     } catch (error) {
         res.redirect('/?error=internalError');
     }
@@ -44,7 +58,8 @@ inicioController.cancelarCita = async(req,res) => {
     const idCita = req.params.idCita;
     try {
         await inicioModel.cancelarCita(idCita);
-        await inicioController.peticionIncio(req,res);
+       
+        res.redirect('/inicio?success=citaCancelada');
     } catch (error) {
         res.redirect('/?error=internalError');
     }
