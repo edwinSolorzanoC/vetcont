@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 title: "Bienvenido a Vetcont",
                 text: "La cuenta fue creada exitosamente. Puede iniciar sesion",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 3000
             });
         }else if (successType === "sesioncerrada") {
             Swal.fire({

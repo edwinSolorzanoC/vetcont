@@ -4,3 +4,5 @@ node_modules/
 
 # Ignorar archivos de configuración locales
 .env
+
+.creadbd.sql

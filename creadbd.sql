@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `bd_sistema_veterinario`.`tb_citas` (
   `tb_pacientes_idtb_pacientes` INT NOT NULL,
   `tb_citas_col_fecha` DATE NOT NULL,
   `tb_citas_col_hora` TIME NOT NULL,
-  `tb_citas_col_estado` BIT NOT NULL,
+  `tb_citas_col_estado` INT NOT NULL,
   `tb_citas_col_motivo` VARCHAR(500) NOT NULL,
   `tb_usuariosVeterinaria_idtb_usuariosVeterinaria` INT NOT NULL,
   PRIMARY KEY (`idtb_citas`, `tb_usuariosVeterinaria_idtb_usuariosVeterinaria`),
