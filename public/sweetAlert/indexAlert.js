@@ -63,6 +63,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 showConfirmButton: false,
                 timer: 2000
             });
+        }else if (successType === "sesioncerrada") {
+            Swal.fire({
+                icon: "success",
+                title: "Sesion Cerrada",
+                text: "Gran por trabajar junto a nosotros",
+            });
         }
         
     }

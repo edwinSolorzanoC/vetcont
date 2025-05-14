@@ -32,6 +32,7 @@ indexController.crearUsuario = async (req, res) => {
         // usuario creado exitosamente
         return res.redirect('/?success=userCreated')
     }catch(error){
+        console.log("Error interno", error)
         //Error interno
         return res.redirect('/?success=internalError')
     }
@@ -72,6 +73,8 @@ indexController.iniciarSesion = async (req, res) => {
             return res.redirect('/?error=userNotFound');
         }
     } catch (error) {
+            console.log("Error interno", error)
+
         // Manejo de errores en el controlador
         return res.redirect('/?error=internalError');
     }

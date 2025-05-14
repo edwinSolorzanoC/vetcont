@@ -41,6 +41,7 @@ informacionConsultasController.costos = async(req,res) => {
         return res.json(resultado);
     
     } catch (error) {
+        console.log("Error ajax json", error)
         res.redirect('/?error=internalError');
     }
 }

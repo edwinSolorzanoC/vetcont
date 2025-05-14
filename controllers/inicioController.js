@@ -40,6 +40,7 @@ inicioController.peticionIncio = async (req,res) => {
         
         
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -50,6 +51,7 @@ inicioController.editarEstado = async(req,res) => {
         await inicioModel.finalizarCita(idCita);
         res.redirect('/inicio?success=citaFinalizada');
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -61,6 +63,7 @@ inicioController.cancelarCita = async(req,res) => {
        
         res.redirect('/inicio?success=citaCancelada');
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -83,7 +86,7 @@ inicioController.reprogramarCita = async(req,res) => {
         res.redirect('/inicio?success=citaReprogramada');
 
     } catch (error) {
-        console.log(error)
+        console.log("Error interno", error)
     }
 }
 export default inicioController;

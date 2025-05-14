@@ -97,9 +97,9 @@ app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if(err){
             console.log("error en la destruccion de la sesion", err)
-            return res.redirect('/');
+            return res.redirect('/?error=internalError');
         }
-        res.redirect('/')
+        res.redirect('/?success=sesioncerrada')
     })
 })
 

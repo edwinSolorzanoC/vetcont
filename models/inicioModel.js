@@ -37,8 +37,8 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
     
     FROM tb_consultageneral
     
-    JOIN tb_costosconsultas
-    ON tb_consultageneral.idtb_consultaGeneral = tb_costosconsultas.tb_consultaGeneral_idtb_consultaGeneral
+    JOIN tb_costosConsultas
+    ON tb_consultageneral.idtb_consultaGeneral = tb_costosConsultas.tb_consultaGeneral_idtb_consultaGeneral
     
     WHERE tb_consultaGeneral_col_fecha = ? AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?; 
     `;
@@ -50,8 +50,8 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
     
     FROM tb_consultavacunacion
 
-    JOIN tb_costosconsultas
-    ON tb_consultavacunacion.idtb_consultaVacunacion = tb_costosconsultas.tb_consultaVacunacion_idtb_consultaVacunacion
+    JOIN tb_costosConsultas
+    ON tb_consultavacunacion.idtb_consultaVacunacion = tb_costosConsultas.tb_consultaVacunacion_idtb_consultaVacunacion
 
     WHERE tb_consultaVacunacion_col_fecha = ? AND tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;
     `;
@@ -69,6 +69,7 @@ inicioModel.inicio = async(idVeterinaria, fechaAutomatica) => {
         };
         
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -86,6 +87,7 @@ inicioModel.finalizarCita = async (idCita) => {
         await pool.execute(query, [idCita])
 
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -104,6 +106,7 @@ inicioModel.cancelarCita = async (idCita) => {
         await pool.execute(query, [idCita])
 
     } catch (error) {
+        console.log("Error interno", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -135,7 +138,7 @@ inicioModel.reprogramarCita = async (
         ])
 
     } catch (error) {
-        console.log(error)
+        console.log("Error interno", error)
     }
 }
 

@@ -71,12 +71,6 @@ document.addEventListener('DOMContentLoaded', function(){
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-
-                    Swal.fire({
-                        title: 'Cita Cancelada',
-                        text: `La cita se Canceló con exito`,
-                        icon: 'success',
-                    })
                     // se hace una ruta donde se reciva el id y se cancele la cita
                     window.location.href = `/cancelarCitaInformacion/${id}`;
                 }

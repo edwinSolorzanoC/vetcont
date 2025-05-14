@@ -65,7 +65,7 @@ informacionConsultasModel.consultarCostos = async(idConsulta) => {
     tb_costosConsultas_col_descripcion,
     tb_costosConsultas_col_total,
     tb_consultaGeneral_idtb_consultaGeneral
-    FROM tb_costosconsultas 
+    FROM tb_costosConsultas 
     WHERE tb_consultaGeneral_idtb_consultaGeneral = ?;`;
 
     try {
@@ -73,6 +73,7 @@ informacionConsultasModel.consultarCostos = async(idConsulta) => {
         return resultados;
         
     } catch (error) {
+        console.log("Error ajax json model", error)
         res.redirect('/?error=internalError');
     }
 }
@@ -89,7 +90,7 @@ informacionConsultasModel.consultarCostosVacunacion = async(idConsulta) => {
     tb_costosConsultas_col_descripcion,
     tb_costosConsultas_col_total,
     tb_consultaVacunacion_idtb_consultaVacunacion
-    FROM tb_costosconsultas WHERE tb_consultaVacunacion_idtb_consultaVacunacion = ?;`;
+    FROM tb_costosConsultas WHERE tb_consultaVacunacion_idtb_consultaVacunacion = ?;`;
 
     try {
         const [resultados] = await pool.execute(query, [idConsulta])

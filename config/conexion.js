@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+/*
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -19,7 +20,9 @@ pool.getConnection((err, connection) => {
 
     connection.release();
 });
-/*
+
+*/
+
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -55,7 +58,6 @@ pool.getConnection((err, connection) => {
     connection.release();
 });
 
-*/
 
 
  export default pool.promise();
