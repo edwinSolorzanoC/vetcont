@@ -2,17 +2,18 @@ import pool from '../config/conexion.js'
 
 const registrarConsultaGeneralModel = {}
 
-registrarConsultaGeneralModel.buscarPaciente = async(cedulaPropietario, idVeterinaria) => {
+registrarConsultaGeneralModel.buscarPaciente = async(nombrePropietarioFinal, idVeterinaria) => {
     
     const peticionDatos = `
     SELECT tb_propietarios_col_nombre, tb_pacientes_col_nombre, tb_pacientes_col_fechaUltimaConsulta
     FROM tb_pacientes 
-    JOIN tb_propietarios ON tb_propietarios.tb_propietarios_col_cedula = tb_propietarios_tb_propietarios_col_cedula
-    WHERE tb_propietarios_tb_propietarios_col_cedula = ?  AND tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
+    JOIN tb_propietarios ON tb_propietarios.tb_propietarios_col_cedula = tb_pacientes.tb_propietarios_tb_propietarios_col_cedula
+    WHERE tb_propietarios_col_nombre LIKE ? 
+    AND tb_pacientes.tb_usuariosVeterinaria_idtb_usuariosVeterinaria = ?;`;
 
 
     try {
-        const [results] = await pool.execute(peticionDatos, [cedulaPropietario, idVeterinaria]);
+        const [results] = await pool.execute(peticionDatos, [nombrePropietarioFinal, idVeterinaria]);
         return results;
     } catch (error) {
         res.redirect('/?error=internalError');

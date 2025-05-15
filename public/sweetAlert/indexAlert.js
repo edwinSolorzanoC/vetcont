@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Swal.fire({
                 icon: "success",
                 title: "Sesion Cerrada",
-                text: "Gran por trabajar junto a nosotros",
+                text: "Gracias por trabajar junto a nosotros",
             });
         }
         

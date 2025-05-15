@@ -18,11 +18,13 @@ registrarConsultaGeneralController.inicio = async(req,res) => {
 
 registrarConsultaGeneralController.buscarPaciente = async(req, res) =>{
 
-    const {cedulaPropietario}= req.body;
+    const {nombrePropietario}= req.body;
     const idVeterinaria = req.session.user.id;
 
+    const nombrePropietarioFinal = `%${nombrePropietario}%`;
+
     try {
-        const results = await registrarConsultaGeneralModel.buscarPaciente (cedulaPropietario, idVeterinaria);
+        const results = await registrarConsultaGeneralModel.buscarPaciente (nombrePropietarioFinal, idVeterinaria);
         res.render('registrarConsultaGeneral',{datos_paciente: results});
 
     } catch (error) {

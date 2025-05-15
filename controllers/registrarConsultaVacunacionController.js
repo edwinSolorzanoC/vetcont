@@ -20,11 +20,13 @@ registrarConsultaVacunacionController.inicio = async(req,res) => {
 
 registrarConsultaVacunacionController.buscarPaciente = async(req, res) =>{
 
-    const {cedulaPropietario}= req.body;
+    const {nombrePropietario}= req.body;
     const idVeterinaria = req.session.user.id;
 
+    const nombrePropietarioFinal = `%${nombrePropietario}%`;
+
     try {
-        const results = await registrarConsultaVacunacionModel.buscarPaciente(cedulaPropietario, idVeterinaria);
+        const results = await registrarConsultaVacunacionModel.buscarPaciente(nombrePropietarioFinal, idVeterinaria);
         res.render('registrarConsultaVacunacion',{datos_paciente: results});
 
     } catch (error) {

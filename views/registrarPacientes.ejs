@@ -19,11 +19,8 @@
     <main>
 
       <h1>Registrar Pacientes</h1>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Alerta: </strong> Para registrar un nuevo paciente, primero debe existir el registro del propietario
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-
+      
+      
 
       <section class="bloque">
 
@@ -36,6 +33,10 @@
           <form action="/registrarPropietario" method="post" autocomplete="off">
 
             <h1>Registro de propietarios</h1>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Recomendación: </strong> Recordar la cedula para registrar la mascota
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
             <div class="mb-3">
               <label for="" class="form-label">N de Identidad Propietario</label>
               <input name="cedulaPropietario" class="form-control" type="number" placeholder="Numero de Identidad del Propietario ..." aria-label="default input example" required>
@@ -66,6 +67,10 @@
           <form action="/registrarMascota" method="post"> 
 
             <h1>Registrar de pacientes</h1>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Alerta: </strong> Para registrar un nuevo paciente, primero debe existir el registro del propietario
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
             <div class="mb-3">
               <label for="" class="form-label">Nombre Mascota</label>
               <input name="nombreMascota" class="form-control" type="text" placeholder="Escribe el nombre de la mascota..." aria-label="default input example" required>

@@ -19,11 +19,13 @@ informacionPacientesController.inicio = async(req,res) => {
 
 informacionPacientesController.buscarPaciente = async(req, res) =>{
 
-    const {cedulaPropietario}= req.body;
+    const {nombrePropietario}= req.body;
     const idVeterinaria = req.session.user.id;
+    const nombrePropietarioFinal = `%${nombrePropietario}%`;
 
     try {
-        const results = await informacionPacientesModel.buscarPaciente(cedulaPropietario, idVeterinaria);
+        const results = await informacionPacientesModel.buscarPaciente(nombrePropietarioFinal, idVeterinaria);
+        console.log(results, "<- controller")
         res.render('informacionPacientes',{datos_paciente: results});
 
     } catch (error) {

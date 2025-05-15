@@ -26,7 +26,7 @@
             <h2>Busqueda de Pacientes</h2>
             <form action="/buscarPacienteCitas" method="post">
               <div class="mb-3">
-                <input name="cedulaPropietario" class="form-control" type="text" maxlength="9" pattern="\d{9}" oninput="this.value = this.value.replace(/\D/g, '')" required placeholder="Ingrese Numero de Identidad del Propietario ..." aria-label="default input example">
+                <input name="nombrePropietario" class="form-control" type="text"   placeholder="Ingrese Nombre del Propietario ..." aria-label="default input example" required>
               </div>
               <button type="submit" class="btn button">Buscar Paciente <i class="fa-solid fa-magnifying-glass"></i> </button>
             </form>

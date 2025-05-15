@@ -20,7 +20,10 @@ registrarCitasController.inicio = async(req,res) => {
 
 registrarCitasController.buscarPaciente = async(req, res) =>{
 
-    const {cedulaPropietario}= req.body;
+    const {nombrePropietario}= req.body;
+
+        const nombrePropietarioFinal = `%${nombrePropietario}%`;
+
 
     if (!req.session || !req.session.user || !req.session.user.id) {
         console.log("Erroe en el id")
@@ -29,7 +32,7 @@ registrarCitasController.buscarPaciente = async(req, res) =>{
     const idVeterinaria = req.session.user.id;
 
     try {
-        const results = await registrarCitasModel.buscarPaciente (cedulaPropietario, idVeterinaria);
+        const results = await registrarCitasModel.buscarPaciente (nombrePropietarioFinal, idVeterinaria);
         res.render('registrarCitas',{datos_paciente: results});
 
     } catch (error) {
