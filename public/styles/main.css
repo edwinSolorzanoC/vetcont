@@ -42,6 +42,9 @@ table .opcionesTabla{
 table tbody tr td{
     align-items: center;
 }
+.telefono_alerta{
+    display: none;
+}
 
 @media screen and (max-width: 900px) {
     
@@ -54,6 +57,12 @@ table tbody tr td{
     table {
     width: 100%;
     border-collapse: collapse;
+    }
+    .telefono_alerta{
+        display: block;
+    }
+    .pc_alerta{
+        display: none;
     }
       
 }

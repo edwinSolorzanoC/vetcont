@@ -25,7 +25,6 @@ informacionPacientesController.buscarPaciente = async(req, res) =>{
 
     try {
         const results = await informacionPacientesModel.buscarPaciente(nombrePropietarioFinal, idVeterinaria);
-        console.log(results, "<- controller")
         res.render('informacionPacientes',{datos_paciente: results});
 
     } catch (error) {

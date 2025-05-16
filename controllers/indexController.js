@@ -80,6 +80,39 @@ indexController.iniciarSesion = async (req, res) => {
     }
 };
 
+indexController.reestablecerContrasenna = async (req, res) => {
+    const {claveSeguridad, password, secondPassword} = req.body
+
+    
+    if (password !== secondPassword) {
+        return res.redirect('/?error=noCoincidencias');
+    }
+
+    // Validación de la contraseña
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!passwordRegex.test(password)) {
+        return res.redirect('/?error=invalidPassword');
+    }
+
+    try{
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const results = await indexModel.actualizarContrasenna(claveSeguridad, hashedPassword);
+
+        if (results.error === "userpassNotFound") {
+            return res.redirect('/?error=invalidKey');
+        }   
+
+
+        //contraseña actualizada
+        return res.redirect("/?success=passUpdate");  
+    }catch(error){
+        console.log("ERROR:INDEX:UPDATEPASS: ", error);
+        return res.redirect('/?success=internalError')
+    }
+
+}
+
 
 
 export default indexController;

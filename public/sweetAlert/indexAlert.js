@@ -50,6 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Su cuenta ha sido suspendida, le recomendamos contactar con el equipo administrativo vetcont",
             });
         }
+        else if (errorType === "noCoincidencias") {
+            Swal.fire({
+                icon: "error",
+                title: "No coinciden las contraseñas",
+                text: "La nueva contraseña digitada con coincide con la contraseña de confirmar",
+            });
+        }
     } 
     
     if (urlParams.has("success")) {
@@ -68,6 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 icon: "success",
                 title: "Sesion Cerrada",
                 text: "Gracias por trabajar junto a nosotros",
+            });
+        }
+        else if (successType === "passUpdate") {
+            Swal.fire({
+                icon: "success",
+                title: "Contraseña Actualizada",
+                text: "Su contraseña se actualiazó correctamente",
             });
         }
         

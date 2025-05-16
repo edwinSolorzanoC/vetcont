@@ -67,13 +67,34 @@
                 <form action="/login" method="post" autocomplete="off">
                     <div class="mb-3">
                         <label for="" class="form-label">Nombre de Usuario</label>
-                        <input class="form-control" type="text" placeholder="Nombre Propietario ..." aria-label="default input example" name="username" required>
+                        <input class="form-control" type="text" placeholder="Nombre Usuario ..." aria-label="default input example" name="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Contraseña de Usuario</label>
-                        <input class="form-control" type="password" placeholder="Nombre Mascota ..." aria-label="default input example" name="password" required>
+                        <input class="form-control" type="password" placeholder="Escribe contraseña ..." aria-label="default input example" name="password" required>
                     </div>
+                    
                     <button type="submit" class="btn btn-success">Iniciar Sesion </button>
+                    <button type="button" class="btn btn-warning" id="olvideContrasennaBtn">Olvide mi contraseña</button>
+                </form>
+            </div>
+
+            <div class="login" id="formularioContrasenna">
+              <h2>Actualizar Contraseña</h2>
+                <form action="/actualizarContrasenna" method="post" autocomplete="off">
+                  <div class="mb-3">
+                    <label for="claveSeguridad">Esribe tu clave de seguridad brindada</label>
+                    <input class="form-control" name="claveSeguridad" type="password" placeholder="Clave de seguridad..." required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="" class="form-label">Nueva Contraseña</label>
+                      <input class="form-control" type="password" placeholder="Escribe la nueva contraseña ..." aria-label="default input example" name="password" required>
+                  </div>
+                  <div class="mb-3">
+                        <label for="" class="form-label">Confirmar nueva contraseña</label>
+                        <input class="form-control" type="password" placeholder="Escribe de nuevo la contraseña ..." aria-label="default input example" name="secondPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Actualizar </button>
                 
                 </form>
             </div>

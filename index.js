@@ -43,6 +43,7 @@ app.post('/reprogramarCita', inicioRouter)
 import indexRouter from './routes/indexRouter.js'
 app.post('/crearCuenta', indexRouter);
 app.post('/login', indexRouter);
+app.post('/actualizarContrasenna', indexRouter);
 
 
 import registrarCitasRouter from './routes/registrarCitasRouter.js'

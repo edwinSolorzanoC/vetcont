@@ -62,5 +62,29 @@ indexModel.consultaBaseDatos = async (username) => {
     }
   
   };
+
+
+    indexModel.actualizarContrasenna = async (claveSeguridad, hashedPassword) => {
+    const queryActualizar = `UPDATE tb_usuariosveterinaria
+    SET tb_usuariosVeterinaria_col_contrasenna = ?
+    WHERE tb_usuariosVeterinaria_col_claveSeguraidad = ?    `;
+
+    try{
+
+      const [results] = await pool.execute(queryActualizar, [hashedPassword, claveSeguridad]);
+
+          // Si no se actualizó ninguna fila, significa que la clave de seguridad no coincide
+        if (results.affectedRows === 0) {
+            return { error: "userpassNotFound" };
+        }
+        
+      return results
+
+    }catch(error){
+      console.log("ERROR:M:INDEX:UPDATEPASS: ", error)
+      res.redirect('/?error=internalError');
+    }
+};
+
   
 export default indexModel;
