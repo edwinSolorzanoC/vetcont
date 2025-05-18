@@ -31,6 +31,7 @@ informacionCitasController.buscarCitas = async(req,res) => {
     try {
         
         const resultados = await informacionCitasModel.buscarCita(fechaInicio, fechaFinal, idVeterinaria);
+        console.log("Controller: ", resultados)
         res.render('informacionCitas', {datosCitas: resultados})
     } catch (error) {
         res.redirect('/?error=internalError');
