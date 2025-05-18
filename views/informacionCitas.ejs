@@ -72,12 +72,18 @@
                         <% datosCitas.sort((a, b) => new Date(b.tb_citas_col_fecha) - new Date(a.tb_citas_col_fecha)); %>
                           <tbody>
                             
+                            <%console.log(datosCitas)%>
                             <% datosCitas.forEach(dato => { %>
 
                               <tr class="table-hover linea_tabla" id="linea_tabla">
                                 <td style="display: none;"><%=dato.idtb_citas%></td>
-                                <td><%=dato.tb_propietarios_col_nombre%></td>
-                                <td><%=dato.tb_pacientes_col_nombre%></td>
+                                <td>
+                                  <%= dato.tb_propietarios_col_nombre ? dato.tb_propietarios_col_nombre : dato.tb_citas_col_propietarioNombre %>
+                                </td>
+                                <td>
+                                  <%= dato.tb_pacientes_col_nombre ? dato.tb_pacientes_col_nombre : dato.tb_citas_col_mascotaNombre %>
+                                </td>
+
                                 <td>
                                   <%= new Date(dato.tb_citas_col_fecha).toLocaleDateString('es-ES') %>
                                 </td>

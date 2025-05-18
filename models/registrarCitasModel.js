@@ -54,6 +54,21 @@ registrarCitasModel.nuevaCita = async(
     INSERT INTO tb_citas(
     tb_propietarios_tb_propietarios_col_cedula,
     tb_pacientes_idtb_pacientes,
+    tb_citas_col_mascotaNombre,
+    tb_citas_col_propietarioNombre,
+    tb_citas_col_fecha,
+    tb_citas_col_hora,
+    tb_citas_col_estado,
+    tb_citas_col_motivo,
+    tb_usuariosVeterinaria_idtb_usuariosVeterinaria
+    )VALUES(
+    ?, ?, ?, ?, ?, ?, ?, ?, ?
+    );
+    `;
+    const queryInsertarSin = `
+    INSERT INTO tb_citas(
+    tb_citas_col_mascotaNombre,
+    tb_citas_col_propietarioNombre,
     tb_citas_col_fecha,
     tb_citas_col_hora,
     tb_citas_col_estado,
@@ -74,11 +89,16 @@ registrarCitasModel.nuevaCita = async(
 
         const [datosIds] = await pool.execute(queryIds, [nombreMascotaCita, nombrePropietarioCita, idVeterinaria]);
 
-        const idPropietario = datosIds[0].tb_propietarios_col_cedula;
-        const idMascota = datosIds[0].idtb_pacientes;
+
+        if(datosIds.length > 0){
+            const idPropietario = datosIds[0].tb_propietarios_col_cedula;
+            const idMascota = datosIds[0].idtb_pacientes;
 
 
-        await pool.execute(queryInsertar, [idPropietario, idMascota, fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
+            await pool.execute(queryInsertar, [idPropietario, idMascota,nombreMascotaCita,nombrePropietarioCita, fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
+        }else{
+            await pool.execute(queryInsertarSin, [nombreMascotaCita,nombrePropietarioCita,fechaCita, horaCita, estadoCita, motivoCita, idVeterinaria])
+        }
 
     } catch (error) {
         throw error; 

@@ -66,8 +66,12 @@
                 <% citas.forEach(dato => { %>
                   <tr class="table-hover linea_tabla" id="linea_tabla">
                     <td style="display: none;" ><%=dato.idtb_citas%></td>
-                    <td><%=dato.tb_propietarios_col_nombre%></td>
-                    <td><%=dato.tb_pacientes_col_nombre%></td>
+                     <td>
+                        <%= dato.tb_propietarios_col_nombre ? dato.tb_propietarios_col_nombre : dato.tb_citas_col_propietarioNombre %>
+                      </td>
+                      <td>
+                        <%= dato.tb_pacientes_col_nombre ? dato.tb_pacientes_col_nombre : dato.tb_citas_col_mascotaNombre %>
+                      </td>
                     <td><%=dato.tb_citas_col_hora%></td>
                     <td>
                       <%= new Date(dato.tb_citas_col_fecha).toLocaleDateString('es-ES') %>
